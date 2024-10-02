@@ -2,3 +2,12 @@
     margin: 0;
     padding: 0;
 }
+
+body{
+    background-image: url("../assets/cover.png");
+    background-repeat: no-repeat;
+}
+
+/* section{
+    border:solid red;
+} */

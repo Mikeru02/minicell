@@ -1,0 +1,93 @@
+.landing-page{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.welcome-text{
+    width: 28rem;
+}
+
+.welcome-header{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.description{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.welcome-text h1{
+    color: #ffffff;
+    font-family: 'Aclonica', sans-serif;
+    font-size: 3rem;
+}
+
+.welcome-text p{
+    font-family: 'Spinnaker', sans-serif;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.explore-buttons{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#add-cart{
+    width: 13rem;
+    height: 3rem;
+    border-radius: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #2C2C2C;
+    border: solid #ffffff;
+    cursor: pointer;
+    box-shadow: -3px 3px #FFFFFF;
+    margin-right: 1rem;
+}
+
+#add-cart p{
+    font-family: 'Spinnaker', sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+#add-cart i{
+    background-color: #ffffff;
+    padding: 3px;
+    border-radius: 15px;
+    margin-left: 1rem;
+}
+
+#explore-now{
+    width: 13rem;
+    height: 3rem;
+    border-radius: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: solid #ffffff;
+    cursor: pointer;
+    box-shadow: -3px 3px #FFFFFF;
+}
+
+#explore-now p{
+    font-family: 'Spinnaker', sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+#explore-now i{
+    background-color: #ffffff;
+    padding: 3px;
+    border-radius: 15px;
+    margin-left: 1rem;
+}
