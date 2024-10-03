@@ -1,8 +1,12 @@
 .landing-page{
+    min-height: 85vh;
+}
+
+.div{
     display: flex;
     flex-direction: column;
-    align-content: flex-end;
     flex-wrap: wrap;
+    align-content: flex-end;
 }
 
 .welcome-text{
@@ -90,4 +94,44 @@
     padding: 3px;
     border-radius: 15px;
     margin-left: 1rem;
+}
+
+.image-buttons{
+    bottom: 0;
+    position: absolute;
+    display: flex;
+}
+
+.image-buttons div{
+    width: 400px;
+    height: 390px;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    margin-left: 1rem;
+}
+
+.kids-image{
+    background-image: url("../assets/kids.png");
+    font-family: 'Aclonica', sans-serif;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 5rem;
+}
+
+.kids-image :nth-child(1), .mens-image :nth-child(2){
+    color:#FFFFFF;
+}
+
+.mens-image{
+    background-image: url("../assets/mens.png");
+    font-family: 'Aclonica', sans-serif;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 5rem;
 }

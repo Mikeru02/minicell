@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 
 body{
@@ -8,6 +10,6 @@ body{
     background-repeat: no-repeat;
 }
 
-/* section{
+section{
     border:solid red;
-} */
+}
