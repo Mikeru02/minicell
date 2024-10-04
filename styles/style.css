@@ -5,11 +5,21 @@
     box-sizing: border-box;
 }
 
-body{
-    background-image: url("../assets/cover.png");
-    background-repeat: no-repeat;
+html{
+    font-size: 10px;
 }
 
-section{
-    border:solid red;
+body{
+    background-color: rgba(8, 44, 75, 0.7);
+}
+
+.responsive-container{
+    width: 1440px;
+    min-height: 1024px;
+    margin: auto;
+    background-image: url("../assets/cover.png");
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 1);
+
+    border: 1px solid red;
 }
