@@ -1,4 +1,9 @@
 .product-page{
     height: 1024px;
+    display: flex;
     border: solid black;
+}
+
+.products-container{
+    
 }
