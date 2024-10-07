@@ -10,10 +10,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Stylesheet -->
-        <link rel="stylesheet" href="src/views/homepage/styles/style.css" />
-        <link rel="stylesheet" href="src/views/homepage/styles/header_style.css" />
-        <link rel="stylesheet" href="src/views/homepage/styles/landing.css" />
-        <link rel="stylesheet" href="src/views/homepage/styles/product_style.css" />
+        <link rel="stylesheet" href="src/views/landingpage/styles/style.css" />
+        <link rel="stylesheet" href="src/views/landingpage/styles/header_style.css" />
+        <link rel="stylesheet" href="src/views/landingpage/styles/landing.css" />
+        <link rel="stylesheet" href="src/views/landingpage/styles/product_style.css" />
 
         <!-- Fonts -->
         <link href="https://fonts.cdnfonts.com/css/kulim-park" rel="stylesheet">
@@ -27,14 +27,16 @@
     <body>
         <div class="responsive-container">
             <header>
-                <img src="https://res.cloudinary.com/dzmhkee5i/image/upload/v1726044546/minicell/cvbz1wok7xzzwydkpklj.png">
+                <a href="/minicell/">
+                    <img src="https://res.cloudinary.com/dzmhkee5i/image/upload/v1726044546/minicell/cvbz1wok7xzzwydkpklj.png">
+                </a>
                 <nav>
                     <div class="search-bar">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <p id="search">Search</p>
                     </div>
                     <div class="buttons">
-                        <a href="/minicell/index.php/login">
+                        <a href="/minicell/index.php/signUp">
                             <i class="fa-solid fa-user" id="btn"></i>
                         </a>
                         <i class="fa-solid fa-cart-shopping"></i>
