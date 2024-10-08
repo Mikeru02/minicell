@@ -1,4 +1,29 @@
 .product-page{
     height: 1024px;
     border: solid black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.prod-header{
+    font-family: 'Dela Gothic One', sans-serif;
+    display: flex;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+#product-container{
+    display: flex;
+}
+
+#product{
+    margin: 1rem;
+}
+
+#product-image{
+    width: 30rem;
+    height: 30rem;
 }

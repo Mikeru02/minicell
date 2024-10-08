@@ -42,7 +42,9 @@ class User{
 
         $user = mysqli_fetch_assoc($result);
 
-        if ($password == $user['password']){
+        if ($password == $user['password'] && $user['role'] == 'user'){
+            return $user;
+        }else if ($password == $user['password'] && $user['role'] == 'admin'){
             return $user;
         }
     }

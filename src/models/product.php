@@ -26,9 +26,16 @@ class Product{
         $result = mysqli_query($conn, $query);
 
         $row = mysqli_fetch_assoc($result);
-        $userCount = $row['product_count'] + 1; // Increment for the new user
+        $productCount = $row['product_count'] + 1;
+        $numbersOfZeros = 4;
 
-        $userNumber = str_pad($userCount, 4, '0', STR_PAD_LEFT);
+        if ($productCount < 10){
+            $numbersOfZeros = 4;
+        }else if ($productCount < 100){
+            $numbersOfZeros = 3;
+        }
+
+        $userNumber = str_pad($productCount, $numbersOfZeros, '0', STR_PAD_LEFT);
 
         return $year . $userNumber;
     }

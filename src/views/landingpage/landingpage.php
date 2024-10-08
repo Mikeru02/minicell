@@ -21,8 +21,8 @@
         <link href="https://fonts.cdnfonts.com/css/spinnaker" rel="stylesheet">
         <link href="https://fonts.cdnfonts.com/css/br-cobane" rel="stylesheet">
         <link href="https://fonts.cdnfonts.com/css/chivo-mono" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/dela-gothic-one" rel="stylesheet">
 
-        <!-- <script src="script.js" defer></script> -->
     </head>
     <body>
         <div class="responsive-container">
@@ -106,24 +106,9 @@
                     </div>
                 </section>
                 <section class="product-page">
-                    <?php
-                    // Check if there are products to display
-                    if (!empty($products)) {
-                        foreach ($products as $product) {
-                            ?>
-                            <div class="product">
-                                <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
-                                <h2><?php echo htmlspecialchars($product['name']); ?></h2>
-                                <p><?php echo htmlspecialchars($product['description']); ?></p>
-                                <p>Price: $<?php echo htmlspecialchars($product['price']); ?></p>
-                                <p>Status: <?php echo htmlspecialchars($product['status']); ?></p>
-                            </div>
-                            <?php
-                        }
-                    } else {
-                        echo "<p>No products available</p>";
-                    }
-                    ?>
+                    <header class="prod-header"># New Arrivals</header>
+                    <div id="product-container">
+                    </div>
                 </section>
             </main>
             <footer>
@@ -131,4 +116,49 @@
             </footer>
         </div>
     </body>
+    <script>
+        var products = <?php echo json_encode($products); ?>;
+
+        console.log(products);
+
+        const productContainer = document.getElementById('product-container');
+
+        for (let i = products.length - 1; i >= 0; i--) {
+            if (productContainer.children.length === 4) {
+                break;
+            }
+            const prodImage = products[i].image;
+            const prodName = products[i].name;
+            console.log(products[i].name);
+            const prodDesc = products[i].description;
+            const prodPrice = products[i].price;
+
+            const individualContainer = document.createElement('div');
+            const prodImageEl = document.createElement('img');
+            const prodNameEl = document.createElement('p');
+            const prodDescEl = document.createElement('p');
+            const prodPriceEl = document.createElement('p');
+
+            individualContainer.setAttribute('id', 'product');
+            prodImageEl.setAttribute('id', 'product-image');
+            prodNameEl.setAttribute('id', 'product-name');
+            prodDescEl.setAttribute('id', 'product-desc');
+            prodPriceEl.setAttribute('id', 'product-price');
+
+            prodImageEl.src = prodImage;
+            prodNameEl.innerHTML = "# " + prodName;
+            prodDescEl.innerHTML = prodDesc;
+            prodPriceEl.innerHTML = prodPrice + " PHP";
+
+            individualContainer.appendChild(prodImageEl);
+            individualContainer.appendChild(prodNameEl);
+            individualContainer.appendChild(prodDescEl);
+            individualContainer.appendChild(prodPriceEl);
+
+            productContainer.appendChild(individualContainer);
+        }
+        
+
+
+    </script>
 </html>
