@@ -14,7 +14,6 @@ class AdminController{
             $result = $this->user->get($mobile_num, $password);
 
             if ($result) {
-                // Success message or redirect after successful sign-up
                 //require_once 'src/views/adminpage/adminpage.php';
                 $_SESSION['admin_logged_in'] = true;
                 header('Location: /minicell/index.php/adminpage');
@@ -28,7 +27,7 @@ class AdminController{
         
     }
     public function logout() {
-        session_start(); // Start the session
+        session_start();
         $_SESSION['admin_logged_in'] = false; // Set logged in status to false
         session_destroy(); // Destroy the session
         header('Location: /minicell/index.php'); // Redirect to the homepage or login page

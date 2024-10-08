@@ -22,8 +22,6 @@ body{
     align-items: center;
     justify-content: center;
     background-color: #FFFFFF;
-
-    border: solid red;
 }
 
 .logo{
@@ -133,7 +131,7 @@ form *{
 .right-side{
     width: 60rem;
     height: 85rem;
-    background-image: url("https://res.cloudinary.com/dzmhkee5i/image/upload/v1728291577/minicell/kaqnta6gtlcls8brprw0.png");
+    background-image: url("https://res.cloudinary.com/dzmhkee5i/image/upload/v1728396344/minicell/off10l67n9nlub5pqk1z.png");
     background-size: cover;
     background-position: center;
     display: flex;

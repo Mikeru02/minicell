@@ -5,7 +5,7 @@ class LogInController {
     private $user;
 
     public function __construct() {
-        $this->user = new User(); // Instantiate the User model
+        $this->user = new User();
     }
 
     public function index() {
@@ -15,10 +15,9 @@ class LogInController {
             $result = $this->user->get($mobile_num, $password);
 
             if ($result) {
-                // Success message or redirect after successful sign-up
                 require_once 'src/views/signUpSuccess/signUpSuccess.php';
             } else {
-                echo "Failed to register user.";
+                echo "Failed to login user.";
             }
         } else {
             require_once 'src/views/loginpage/loginpage.php';

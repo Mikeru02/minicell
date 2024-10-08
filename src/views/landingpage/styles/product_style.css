@@ -17,6 +17,7 @@
 
 #product-container{
     display: flex;
+    margin-top: 2rem;
 }
 
 #product{
@@ -26,4 +27,24 @@
 #product-image{
     width: 30rem;
     height: 30rem;
+}
+
+#product-name{
+    width: 30rem;
+    font-size: 2rem;
+    font-family: 'Dela Gothic One', sans-serif;
+    text-align: center;
+}
+
+#product-desc{
+    width: 30rem;
+    font-size: 1.8rem;
+    font-family: 'Spinnaker', sans-serif;
+}
+
+#product-price{
+    width: 30rem;
+    font-size: 2rem;
+    font-family: 'Dela Gothic One', sans-serif;
+    text-align: right;
 }

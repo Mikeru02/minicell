@@ -24,10 +24,7 @@ class ProductController{
 
             $result = $this->product->create($image_dir, $name, $desc, $price, $status);
 
-            if ($result) {
-                // Success message or redirect after successful sign-up
-                echo "Product Saved";
-            } else {
+            if (!$result) {
                 echo "Failed to register user.";
             }
         } else {

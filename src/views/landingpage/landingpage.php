@@ -70,10 +70,13 @@
                                     <p>Add to my Cart</p>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
+                                <a href="#product-page">
                                 <button id="explore-now">
                                     <p>Explore Now</p>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
+                                </a>
+                                
                             </div>
                         </div>
                         <div class="lower">
@@ -105,7 +108,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="product-page">
+                <section id="product-page" class="product-page">
                     <header class="prod-header"># New Arrivals</header>
                     <div id="product-container">
                     </div>
