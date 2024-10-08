@@ -14,5 +14,8 @@
         <input type"text" id="status" name="status" />
         <button id="submit">Submit</button>
     </form>
+    <form action="/minicell/index.php/logout" method="POST" style="display: inline;">
+        <button type="submit">Logout</button>
+    </form>
 </body>
 </html>

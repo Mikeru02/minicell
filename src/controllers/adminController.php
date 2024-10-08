@@ -15,7 +15,10 @@ class AdminController{
 
             if ($result) {
                 // Success message or redirect after successful sign-up
-                require_once 'src/views/adminpage/adminpage.php';
+                //require_once 'src/views/adminpage/adminpage.php';
+                $_SESSION['admin_logged_in'] = true;
+                header('Location: /minicell/index.php/adminpage');
+                exit(); 
             } else {
                 echo "Failed to register user.";
             }
@@ -24,5 +27,13 @@ class AdminController{
         }
         
     }
+    public function logout() {
+        session_start(); // Start the session
+        $_SESSION['admin_logged_in'] = false; // Set logged in status to false
+        session_destroy(); // Destroy the session
+        header('Location: /minicell/index.php'); // Redirect to the homepage or login page
+        exit();
+    }
+    
 }
 ?>

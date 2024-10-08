@@ -1,4 +1,6 @@
 <?php
+session_start();
+//$_SESSION['admin_logged_in'] = false;
 
 require_once 'src/controllers/landingController.php';
 require_once 'src/controllers/signUpController.php';
@@ -22,6 +24,19 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php') {
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/admin'){
     $controller = new AdminController();
     $controller->index();
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/adminpage') {
+    // Load the admin page after successful login
+    if ($_SESSION['admin_logged_in'] === true){
+        require_once 'src/views/adminpage/adminpage.php';
+    }else{
+        $controller = new NotFoundController();
+        $controller->index();
+    }
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/logout') {
+    $controller = new AdminController();
+    $controller->logout();
 }
 
 else{
