@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link href="https://fonts.cdnfonts.com/css/dela-gothic-one" rel="stylesheet">
 
-
+    <script src="../src/views/signUpSuccess/js/script.js" defer></script>
 </head>
 <body>
     <div class="responsive">
@@ -28,6 +28,8 @@
             <p class="con-header"># Successful Account Creation</p>
             <p>Congratulations! Your account is successfully created.</p>
             <p>Please complete your Account Information to order from us.</p>
+            <br/>
+            <p class="redirecting">Redirecting to Landing Page please wait</p>
         </div>
 
     </div>

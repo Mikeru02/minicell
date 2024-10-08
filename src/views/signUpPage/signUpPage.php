@@ -47,7 +47,9 @@
                     <p>and Start shopping with Us!</p>
                 </div>
                 <p class="have-account">Already have an Account?</p>
-                <button id="login-button">Login</button>
+                <a href="/minicell/index.php/login">
+                    <button id="login-button">Login</button>
+                </a>
             </div>
         </div>
     </div>

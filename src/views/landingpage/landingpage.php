@@ -89,20 +89,41 @@
                                 </div>
                             </div>
                             <div class="login-buttons">
-                                <button id="login">
-                                    <p>Log In Account</p>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                                <button id="sign-up">
-                                    <p>Sign Up for Free</p>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
+                                <a href="/minicell/index.php/login">
+                                    <button id="login">
+                                        <p>Log In Account</p>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </a>
+                                <a href="/minicell/index.php/signUp">
+                                    <button id="sign-up">
+                                        <p>Sign Up for Free</p>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </section>
                 <section class="product-page">
-
+                    <?php
+                    // Check if there are products to display
+                    if (!empty($products)) {
+                        foreach ($products as $product) {
+                            ?>
+                            <div class="product">
+                                <img src="<?php echo htmlspecialchars($product['image']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                                <h2><?php echo htmlspecialchars($product['name']); ?></h2>
+                                <p><?php echo htmlspecialchars($product['description']); ?></p>
+                                <p>Price: $<?php echo htmlspecialchars($product['price']); ?></p>
+                                <p>Status: <?php echo htmlspecialchars($product['status']); ?></p>
+                            </div>
+                            <?php
+                        }
+                    } else {
+                        echo "<p>No products available</p>";
+                    }
+                    ?>
                 </section>
             </main>
             <footer>
