@@ -8,7 +8,7 @@ class User{
         $userId = $this->generateId();
 
         try{
-            $query = "INSERT INTO users (id, mobile_num, password) VALUES ('$userId', '$mobile_num', '$password')";
+            $query = "INSERT INTO users (id, mobile_num, password, role) VALUES ('$userId', '$mobile_num', '$password', 'user')";
             $result = mysqli_query($conn, $query);
             return $result;
         } finally{

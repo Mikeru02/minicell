@@ -4,6 +4,9 @@ session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
     $_SESSION['admin_logged_in'] = false;
 }
+if (!isset($_SESSION['user_logged_in'])) {
+    $_SESSION['user_logged_in'] = false;
+}
 
 require_once 'src/controllers/landingController.php';
 require_once 'src/controllers/signUpController.php';
@@ -41,6 +44,14 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/adminpage') {
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/logout') {
     $controller = new AdminController();
     $controller->logout();
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/homepage'){
+    if ($_SESSION['user_logged_in'] === true){
+        require_once 'src/views/homepage/homepage.php';
+    }else{
+        $controller = new NotFoundController();
+        $controller->index();
+    }
 }
 else{
     $controller = new NotFoundController();
