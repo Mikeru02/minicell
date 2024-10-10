@@ -9,11 +9,12 @@ if (!isset($_SESSION['user_logged_in'])) {
 }
 
 require_once 'src/controllers/landingController.php';
-require_once 'src/controllers/signUpController.php';
-require_once 'src/controllers/loginController.php';
-require_once 'src/controllers/notfoundController.php';
+//require_once 'src/controllers/signUpController.php';
+//require_once 'src/controllers/loginController.php';
+//require_once 'src/controllers/notfoundController.php';
 require_once 'src/controllers/productController.php';
-require_once 'src/controllers/adminController.php';
+//require_once 'src/controllers/adminController.php';
+require_once 'src/controllers/accountController.php';
 
 if ($_SERVER['REQUEST_URI'] == '/minicell/index.php') {
     $controller = new LandingController();

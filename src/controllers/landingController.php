@@ -9,4 +9,10 @@ class LandingController{
         require_once 'src/views/landingpage/landingpage.php';
     }
 }
+
+class NotFoundController{
+    public function index(){
+        require_once 'src/views/notfound/notfound.php';
+    }
+}
 ?>
