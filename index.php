@@ -27,9 +27,6 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/admin'){
     $controller = new AdminController();
     $controller->index();
 }
-else if($_SERVER['REQUEST_URI'] == '/minicell/index.php/success'){
-    require_once 'src/views/loginsuccess/loginsuccess.php';
-}
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/adminpage') {
     // Load the admin page after successful login
     if ($_SESSION['admin_logged_in'] === true){

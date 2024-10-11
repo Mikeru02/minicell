@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    background-color: rgba(8, 44, 75, 0.7);
+    /* background-color: #F6F2F6; */
+}
+
+.responsive{
+    width: 1440px;
+    min-height: 1024px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
+.logo{
+    height: 8rem;
+    z-index: 9999;
+}
+
+.container{
+    width: 1350px;
+    height: 850px;
+    background-color: rgba(8, 44, 75, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #FFFFFF;
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 2.4rem;
+}
+
+svg{
+    height: 35rem;
+}
+
+.con-header{
+    font-size: 4rem;
+}
+
