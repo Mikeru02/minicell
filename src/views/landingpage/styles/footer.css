@@ -1,0 +1,13 @@
+footer{
+    height: 50em;
+    display: flex;
+    border: solid black;
+}
+
+.socials div{
+    display: flex;
+}
+
+.author div{
+    display: flex;
+}

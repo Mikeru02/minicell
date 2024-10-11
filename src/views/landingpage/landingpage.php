@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="src/views/landingpage/styles/header_style.css" />
         <link rel="stylesheet" href="src/views/landingpage/styles/landing.css" />
         <link rel="stylesheet" href="src/views/landingpage/styles/product_style.css" />
+        <link rel="stylesheet" href="src/views/landingpage/styles/footer.css" />
 
         <!-- Fonts -->
         <link href="https://fonts.cdnfonts.com/css/kulim-park" rel="stylesheet">
@@ -115,7 +116,55 @@
                 </section>
             </main>
             <footer>
+                <div class="socials">
+                    <div>
+                        <i class="fa-brands fa-facebook"></i>
+                        <p>Facebook</p>
+                    </div>
+                    <div>
+                        <i class="fa-brands fa-instagram"></i>
+                        <p>Instagram</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>minicellapparel@gmail.com</p>
+                    </div>
+                </div>
+                <div class="authors">
+                    <div class="author">
+                        <div>
+                            <i class="fa-brands fa-facebook"></i>
+                            <p>Raecell Ann Galvez</p>
+                        </div>
+                        <div>
+                            <i class="fa-brands fa-github"></i>
+                            <p>raecellann</p>
+                        </div>
+                    </div>
+                    <div class="author">
+                        <div>
+                            <i class="fa-brands fa-facebook"></i>
+                            <p>Nicky Shane Villaruel</p>
+                        </div>
+                        <div>
+                            <i class="fa-brands fa-github"></i>
+                            <p>nickyshane</p>
+                        </div>
+                    </div>
+                    <div class="author">
+                        <div>
+                            <i class="fa-brands fa-facebook"></i>
+                            <p>Michael Ponce</p>
+                        </div>
+                        <div>
+                            <i class="fa-brands fa-github"></i>
+                            <p>mikerusensei</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about">
 
+                </div>
             </footer>
         </div>
     </body>

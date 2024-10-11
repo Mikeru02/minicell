@@ -1,7 +1,5 @@
 .product-page{
     height: 1024px;
-    border: solid black;
-
     display: flex;
     flex-direction: column;
     align-items: center;
