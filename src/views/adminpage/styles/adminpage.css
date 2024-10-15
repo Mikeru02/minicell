@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+.responsive-container{
+    width: 1440px;
+    min-height: 1024px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+body{
+    background-color: rgba(8, 44, 75, 0.7);
+}
+
+header{
+    display: flex;
+    align-items: center;
+    font-family: 'Spinnaker', sans-serif;
+    font-size: 2rem;
+    border-bottom: solid black;
+}
+
+.welcome-text{
+    font-family: 'Dela Gothic One',sans-serif;
+    font-size: 4rem;
+}
+
+main{
+    display: flex;
+}
+
+nav{
+    width: 41rem;
+    height: 1024px;
+    background-color: rgba(8, 44, 75, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: inherit;
+    height: 40rem;
+    justify-content: space-around;
+}
+
+ul li{
+    font-family: 'Spinnaker', sans-serif;
+    font-size: 2rem;
+}
+
+.logout {
+    width: 20rem;
+    height: 5rem;
+    border-radius: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    margin-right: 1rem;
+}

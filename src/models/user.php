@@ -23,14 +23,28 @@ class User{
         $year = date('Y');
 
         $query = "SELECT COUNT(*) as user_count FROM users";
+        $query_max = "SELECT MAX(id) as max_id FROM users";
+
         $result = mysqli_query($conn, $query);
+        $max_result = mysqli_query($conn, $query_max);
 
         $row = mysqli_fetch_assoc($result);
+        $maxIdRow = mysqli_fetch_assoc($max_result);
+
         $userCount = $row['user_count'] + 1; // Increment for the new user
+        $maxId = $maxIdRow['max_id'];
 
         $userNumber = str_pad($userCount, 4, '0', STR_PAD_LEFT);
+        $newId = $year . $userNumber;
 
-        return $year . $userNumber;
+        if ($newId == $maxId){
+            $userCount = $row['user_count'] + 1 + 1;
+            $userNumber = str_pad($userCount, 4, '0', STR_PAD_LEFT);
+            $newId = $year . $userNumber;
+            return $newId;
+        }
+
+        return $newId;
     }
 
     public function get($mobile_num, $password){
