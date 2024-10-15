@@ -117,13 +117,14 @@
             </main>
             <footer>
                 <div class="socials">
+                    <p class='foot-header'>Reach Us!</p>
                     <div>
                         <i class="fa-brands fa-facebook"></i>
-                        <p>Facebook</p>
+                        <p>Minicell Apparel</p>
                     </div>
                     <div>
                         <i class="fa-brands fa-instagram"></i>
-                        <p>Instagram</p>
+                        <p>mncll.apprl</p>
                     </div>
                     <div>
                         <i class="fa-solid fa-envelope"></i>
@@ -131,11 +132,8 @@
                     </div>
                 </div>
                 <div class="authors">
+                    <p class='foot-header'>Contributors</p>
                     <div class="author">
-                        <div>
-                            <i class="fa-brands fa-facebook"></i>
-                            <p>Raecell Ann Galvez</p>
-                        </div>
                         <div>
                             <i class="fa-brands fa-github"></i>
                             <p>raecellann</p>
@@ -143,27 +141,31 @@
                     </div>
                     <div class="author">
                         <div>
-                            <i class="fa-brands fa-facebook"></i>
-                            <p>Nicky Shane Villaruel</p>
-                        </div>
-                        <div>
                             <i class="fa-brands fa-github"></i>
                             <p>nickyshane</p>
                         </div>
                     </div>
                     <div class="author">
                         <div>
-                            <i class="fa-brands fa-facebook"></i>
-                            <p>Michael Ponce</p>
-                        </div>
-                        <div>
                             <i class="fa-brands fa-github"></i>
                             <p>mikerusensei</p>
                         </div>
                     </div>
                 </div>
-                <div class="about">
-
+                <div class="footer-buttons">
+                    <p class='foot-header'>Shop with Us Now!</p>
+                    <a href="/minicell/index.php/signUp">
+                        <button id="sign-up">
+                            <p>Sign Up for Free</p>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </a>
+                    <a href="/minicell/index.php/login">
+                        <button id="login">
+                            <p>Log In Account</p>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </a>
                 </div>
             </footer>
         </div>

@@ -1,13 +1,37 @@
 footer{
-    height: 50em;
+    height: 25em;
     display: flex;
-    border: solid black;
+    align-items: flex-start;
+    justify-content: space-around;
+    border-top: solid black;
+}
+
+.footer-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .socials div{
     display: flex;
+    align-items: center;
 }
 
 .author div{
     display: flex;
+    align-items: center;
+}
+
+.socials p, .authors p{
+    font-size: 3rem;
+    font-family: 'Spinnaker', sans-serif;
+}
+
+.socials i, .author i{
+    font-size: 3rem;
+}
+
+.foot-header{
+    font-size: 3rem !important;
+    font-family: 'Dela Gothic One', sans-serif !important;
 }
