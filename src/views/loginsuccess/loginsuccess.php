@@ -19,7 +19,7 @@
 <body>
     <div class="responsive">
         <div class="logo">
-            <a href="/minicell/">
+            <a href="/minicell/index.php">
                 <img src="https://res.cloudinary.com/dzmhkee5i/image/upload/v1726044546/minicell/cvbz1wok7xzzwydkpklj.png" type="image/png" />
             </a>
         </div>

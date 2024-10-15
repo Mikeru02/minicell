@@ -13,6 +13,7 @@ html{
     min-height: 1024px;
     margin: auto;
     background-color: rgba(255, 255, 255, 1);
+    border: 1px solid #FFFFFF;
 }
 
 
@@ -59,6 +60,10 @@ ul{
 ul li{
     font-family: 'Spinnaker', sans-serif;
     font-size: 2rem;
+    padding: 5rem;
+    background-color: #FFFFFF;
+    width: 30rem;
+    text-align: center;
 }
 
 .logout {
@@ -73,3 +78,53 @@ ul li{
     cursor: pointer;
     margin-right: 1rem;
 }
+
+.content-area{
+    width: 103rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Spinnaker", sans-serif;
+}
+
+svg{
+    width: 50rem;
+    height: auto;
+}
+
+.desc{
+    margin-top: 2rem;
+    font-size: 2.5rem;
+}
+
+.header-div{
+    display: flex;
+}
+
+.search-bar{
+    width: 20rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
+.search-bar i {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 2rem;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.search-bar p {
+    font-size: 2rem;
+    font-family: 'Kulim Park', sans-serif;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 1);
+}
+
