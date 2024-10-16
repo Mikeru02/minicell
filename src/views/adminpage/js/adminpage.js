@@ -9,28 +9,39 @@ manageProduct.addEventListener('click', function(){
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <p id="search">Search</p>
             </div>
-            <button>Search</button>
-            <button>Create New Product</button>
+            <button id='search-btn'>Search</button>
+            <button id='create'>Create New Product</button>
         </div>
-        <div class='content-fields'>
-            <p>Name</p>
-            <p>Stocks</p>
-            <p>Price</p>
-            <p>Sizes</p>
+        <div id='display-area'>
+
         </div>
-        <div id='display-area'></div>
     `;
-    // const headerDiv = document.createElement('div');
+    contentArea.style.justifyContent = 'flex-start';
 
-    // const searchBar = document.createElement('div');
-    // const searchImg = document.createElement('i');
-    // const searchInput= document.createElement('input');
-    // const searchBtn = document.createElement('button');
+    const createProdBtn = document.getElementById('create');
+    const displayArea = document.getElementById('display-area');
 
-    // const createBtn = document.createElement('button');
-
-    // const searchForm = document.createElement('form');
-    // const createForm = document.createElement('form');
-
-
+    createProdBtn.addEventListener('click', function(){
+        displayArea.innerHTML = `
+        <p>Product Information</p>
+        <form id='create-product-form' action='' method='' enctype='multipart/form-data'>
+            <div id='content-fields'>
+                <p>Image</p>
+                <p>Name</p>
+                <p>Decription</p>
+                <p>Price</p>
+                <p>Sizes</p>
+            </div>
+            <div id='input-fields'>
+                <input type="file" accept="image/*" id="img" name="img" />
+                <input type="text" id="name" name="name" />
+                <input type="text" id="desc" name="desc" />
+                <input type="text" id="price" name="price" />
+                <input type="text" id="status" name="status" />
+            </div>
+            
+        </form>
+        `;
+    })
 })
+
