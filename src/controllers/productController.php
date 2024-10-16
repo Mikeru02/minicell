@@ -13,6 +13,8 @@ class ProductController{
             $name = $_POST['name'];
             $desc = $_POST['desc'];
             $price = $_POST['price'];
+            $category = $_POST['category'];
+            $material = $_POST['material'];
             $status = $_POST['status'];
 
             $image = $_FILES['img']['name'];
@@ -22,10 +24,13 @@ class ProductController{
 
             move_uploaded_file($temporary, $image_dir);
 
-            $result = $this->product->create($image_dir, $name, $desc, $price, $status);
+            $result = $this->product->create($image_dir, $name, $desc, $price, $category, $material, $status);
 
             if (!$result) {
-                echo "Failed to register user.";
+                echo "Failed to register product.";
+            } else{
+                header('Location: /minicell/index.php/adminpage');
+                exit();
             }
         } else {
             require_once 'src/views/adminpage/adminpage.php';

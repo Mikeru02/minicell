@@ -25,7 +25,7 @@ manageProduct.addEventListener('click', function(){
     createProdBtn.addEventListener('click', function(){
         displayArea.innerHTML = `
         <h3>Product Information</h3>
-        <form id='create-product-form' action='' method='' enctype='multipart/form-data'>
+        <form id='create-product-form' action='/minicell/index.php/adminpage' method='POST' enctype='multipart/form-data'>
             <div id='content-fields'>
                 <p>Image</p>
                 <p>Name</p>

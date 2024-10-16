@@ -2,13 +2,13 @@
 require_once 'src/config/database.php';
 
 class Product{
-    public function create($image, $name, $desc, $price, $status){
+    public function create($image, $name, $desc, $price, $category, $materials, $status){
         $database = new Database();
         $conn = $database->connect();
         $product_id = $this->generateId();
 
         try{
-            $query = "INSERT INTO products (id, image, name, description, price, status) VALUES ('$product_id', '$image', '$name','$desc', '$price', '$status')";
+            $query = "INSERT INTO products (id, image, name, description, price, category, materials, status) VALUES ('$product_id', '$image', '$name','$desc', '$price', '$category', '$materials', '$status')";
             $result = mysqli_query($conn, $query);
             return $result;
         }finally{
@@ -26,6 +26,7 @@ class Product{
         $result = mysqli_query($conn, $query);
 
         $row = mysqli_fetch_assoc($result);
+
         $productCount = $row['product_count'] + 1;
         $numbersOfZeros = 4;
 
