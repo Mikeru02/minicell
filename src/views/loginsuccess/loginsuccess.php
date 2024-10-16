@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link href="https://fonts.cdnfonts.com/css/dela-gothic-one" rel="stylesheet">
 
-    <!-- <script src="../src/views/loginsuccess/js/script.js" defer></script> -->
+    <script src="../src/views/loginsuccess/js/script.js" defer></script>
 </head>
 <body>
     <div class="responsive">
