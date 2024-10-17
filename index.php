@@ -8,9 +8,7 @@ if (!isset($_SESSION['user_logged_in'])) {
     $_SESSION['user_logged_in'] = false;
 }
 
-require_once 'src/controllers/landingController.php';
-require_once 'src/controllers/productController.php';
-require_once 'src/controllers/accountController.php';
+require_once 'src/controllers/pagesController.php';
 
 if ($_SERVER['REQUEST_URI'] == '/minicell/index.php') {
     $controller = new LandingController();
@@ -24,33 +22,20 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/signUp'){
     $controller->index();
 }
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/admin'){
-    $controller = new AdminController();
+    $controller = new AdminLoginController();
     $controller->index();
 }
-else if (preg_match('/^\/minicell\/index\.php\/adminpage$/', $_SERVER['REQUEST_URI']) || $_SERVER['REQUEST_URI'] == '/minicell/index.php/adminpage'){
-    if ($_SESSION['admin_logged_in'] === true){
-                $controller = new ProductController();
-                $controller->index();
-                require_once 'src/views/adminpage/adminpage.php';
-            }else{
-                $controller = new NotFoundController();
-                $controller->index();
-            }
+else if (preg_match('/^\/minicell\/index\.php\/adminpage/', $_SERVER['REQUEST_URI'])) {
+    if ($_SESSION['admin_logged_in'] === true) {
+        $controller = new AdminPageController();
+        $controller->index();
+    } else {
+        $controller = new NotFoundController();
+        $controller->index();
+    }
 }
-
-// else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/adminpage') {
-//     // Load the admin page after successful login
-//     if ($_SESSION['admin_logged_in'] === true){
-//         $controller = new ProductController();
-//         $controller->index();
-//         require_once 'src/views/adminpage/adminpage.php';
-//     }else{
-//         $controller = new NotFoundController();
-//         $controller->index();
-//     }
-// }
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/logout') {
-    $controller = new AdminController();
+    $controller = new AdminPageController();
     $controller->logout();
 }
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/homepage'){
