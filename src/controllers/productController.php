@@ -32,9 +32,14 @@ class ProductController{
                 header('Location: /minicell/index.php/adminpage');
                 exit();
             }
-        } else {
+        }
+        else {
             require_once 'src/views/adminpage/adminpage.php';
         }
+    }
+
+    public function get(){
+        
     }
 
     public function displayProducts(){

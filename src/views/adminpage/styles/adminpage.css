@@ -230,3 +230,16 @@ svg{
 input{
     border: 1px solid black;
 }
+
+#search-form{
+    display: flex;
+    align-items: center;
+}
+
+#search{
+    width: inherit;
+    height: inherit;
+    border-radius: 1rem;
+    font-family: 'Spinnaker', sans-serif;
+    font-size: 2rem;
+}

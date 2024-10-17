@@ -5,11 +5,13 @@ const contentArea = document.getElementById('content-area');
 manageProduct.addEventListener('click', function(){
     contentArea.innerHTML = `
         <div class='header-div'>
-            <div class='search-bar'>
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <p id="search">Search</p>
-            </div>
-            <button id='search-btn'>Search</button>
+            <form action='/minicell/index.php/adminpage' method='GET' id='search-form'>
+                <div class='search-bar'>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type='text' placeholder='Search' name='search' id='search' />
+                </div>
+                <button id='search-btn'>Search</button>
+            </form>
             <button id='create'>Create New Product</button>
         </div>
         <div id='display-area'>
