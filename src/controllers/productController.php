@@ -32,5 +32,10 @@ class ProductController{
         $products = $this->product->get();
         return $products;
     }
+
+    public function getCategory($category){
+        $result = $this->product->getCategory($category);
+        return $result;
+    }
 }
 ?>

@@ -56,18 +56,35 @@
                                     <p>Add to my Cart</p>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
-                                <a href="#product-page">
+                                <a href="">
                                 <button id="explore-now">
                                     <p>Explore Now</p>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
                                 </a>
-                                
                             </div>
                         </div>
                     </div>
                 </section>
                 <section id="product-page" class="product-page">
+                    <h2 id='h2-title'># Available Products</h2>
+                    <div class='navigation'>
+                        <form action="/minicell/index.php/homepage" method='GET'>
+                            <input class='nav' type="submit" name='category' value='Men'>
+                        </form>
+                        <form action="">
+                            <input class='nav' type="submit" name='category' value='Women'>
+                        </form>
+                        <form action="">
+                            <input class='nav' type="submit" name='category' value='Teens'>
+                        </form>
+                        <form action="">
+                            <input class='nav' type="submit" name='category' value='Kids'>
+                        </form>
+                    </div>
+                    <div id="product-display-area">
+
+                    </div>
                 </section>
             </main>
             <footer>
@@ -75,5 +92,44 @@
             </footer>
         </div>
     </body>
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            var result = <?php echo json_encode($result);?>;
+            console.log(result);
+
+            const displayArea = document.getElementById('product-display-area');
+
+            if (result){
+                for (let i = 0; i < result.length; i++){
+                    let product = result[i];
+
+                    const productContainer = document.createElement('div');
+                    productContainer.setAttribute('class', 'product-container');
+
+                    const image = document.createElement('img');
+                    image.setAttribute('id', 'product-image');
+                    image.src = `../${product.image}`;
+
+                    const name = document.createElement('p');
+                    name.setAttribute('id', 'product-name');
+                    name.innerHTML = `# ${product.name}`;
+                    
+                    const desc = document.createElement('p');
+                    desc.setAttribute('id', 'product-desc');
+                    desc.innerHTML = product.description;
+
+                    const price = document.createElement('p');
+                    price.setAttribute('id', 'product-price');
+                    price.innerHTML = `${product.price} PHP`;
+
+                    productContainer.appendChild(image);
+                    productContainer.appendChild(name);
+                    productContainer.appendChild(desc);
+                    productContainer.appendChild(price);
+
+                    displayArea.appendChild(productContainer);
+                }
+            }
+        });
+    </script>
 </html>

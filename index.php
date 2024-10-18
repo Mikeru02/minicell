@@ -38,9 +38,10 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/logout') {
     $controller = new AdminPageController();
     $controller->logout();
 }
-else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/homepage'){
+else if (preg_match('/^\/minicell\/index\.php\/homepage/', $_SERVER['REQUEST_URI'])){
     if ($_SESSION['user_logged_in'] === true){
-        require_once 'src/views/homepage/homepage.php';
+        $controller = new HomePageController();
+        $controller->index();
     }else{
         $controller = new NotFoundController();
         $controller->index();

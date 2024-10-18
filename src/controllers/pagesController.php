@@ -135,6 +135,19 @@ class SignUpController {
     }
 }
 
+// Home page
+class HomePageController{
+    public function index(){
+        $controller = new ProductController();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET'  && isset($_GET['category'])){
+            $category = strtolower($_GET['category']);
+            $result = $controller->getCategory($category);
+        }
+        require_once 'src/views/homepage/homepage.php';
+    }
+}
+
 // Not Found Page
 class NotFoundController{
     public function index(){

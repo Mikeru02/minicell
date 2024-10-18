@@ -1,70 +1,16 @@
 .landing-page{
-    min-height: 870px;
+    min-height: fit-content;
     display: flex;
-}
-
-.image-buttons{
-    display: flex;
-    align-items: flex-end;
-}
-
-.image-buttons div{
-    width: 40rem;
-    height: 40rem;
-    margin-left: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 20px;
-}
-
-.kids-image{
-    background-image: url("https://res.cloudinary.com/dzmhkee5i/image/upload/v1728268897/minicell/c3acn2yy04iojdw5vvhq.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-
-.kids-image p{
-    font-family: 'Aclonica', sans-serif;
-    font-size: 8rem;
-}
-
-.kids-image :nth-child(1){
-    color: #FFFFFF;
-}
-
-.mens-image{
-    background-image: url("https://res.cloudinary.com/dzmhkee5i/image/upload/v1728268898/minicell/c3f92artgctst1xpmfsg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-
-.mens-image p{
-    font-family: 'Aclonica', sans-serif;
-    font-size: 8rem;
-}
-
-.mens-image :nth-child(2){
-    color: #FFFFFF;
 }
 
 .upper{
-    margin-top: 4rem;
-    margin-left: 5rem;
+    margin: 5rem;
 }
 
 .welcome-text{
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-content: flex-end;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
@@ -152,69 +98,13 @@
     margin-left: 1rem;
 }
 
-.lower{
-    margin-bottom: 10rem;
+.product-page{
+    margin-top: 13rem;
 }
 
-.lower-header{
-    font-family: 'br-cobane', sans-serif;
-    font-size: 3rem;
-}
-
-.arrow-header{
+.navigation{
     display: flex;
-    align-items: center;
+    justify-content: space-evenly;
 }
 
-.arrow-header i{
-    font-size: 5rem;
-    width: 8rem;
-    transform: scaleX(1.6);
-}
 
-.lower h1 span{
-    font-weight: bold;
-    font-family: 'Chivo Mono', sans-serif;
-    text-decoration: underline;
-}
-
-.description2{
-    font-family: 'Spinnaker', sans-serif;
-    font-size: 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-top: 2rem;
-    margin-bottom: 4rem;
-}
-
-.login-buttons {
-    display: flex;
-    justify-content: flex-start;
-}
-
-#login, #sign-up {
-    width: 20rem;
-    height: 5rem;
-    border-radius: 10rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: #2C2C2C;
-    cursor: pointer;
-    margin-right: 1rem;
-}
-
-#login p, #sign-up p {
-    font-family: 'Spinnaker', sans-serif;
-    font-size: 1.5rem;
-    color: #ffffff;
-}
-
-#login i, #sign-up i {
-    background-color: #ffffff;
-    padding: 3px;
-    border-radius: 15px;
-    margin-left: 1rem;
-}

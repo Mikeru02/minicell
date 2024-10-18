@@ -134,5 +134,24 @@ class Product{
             $database->close();
         }
     }
+
+    public function getCategory($category){
+        $database = new Database();
+        $conn = $database->connect();
+
+        try{
+            $query = "SELECT image, name, description, price FROM products WHERE category='$category'";
+            $result = mysqli_query($conn, $query);
+
+            $products = [];
+            while ($row = mysqli_fetch_assoc($result)) {
+                $products[] = $row;
+            }
+            
+            return $products;
+        } finally{
+            $database->close();
+        }
+    }
 }
 ?>
