@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    background-color: rgba(8, 44, 75, 0.7);
+}
+
+svg{
+    height: 30rem;
+}
+
+
+.responsive{
+    width: 1440px;
+    height: 1024px;
+    display:flex;
+    background-color: #ffffff;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    margin:auto;
+}
+
+.container{
+    width: 130rem;
+    height: 85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(8, 44, 75, 0.7);
+}
+
+.title{
+    font-size: 4rem;
+    font-family: "Dela Gothic One", sans-serif;
+}
+
+.desc{
+    font-size: 2rem;
+    font-family: "Spinnaker", sans-serif;
+}
+
+.redirect-btn{
+    width: 20rem;
+    height: 5rem;
+    border-radius: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: solid #ffffff;
+    cursor: pointer;
+    box-shadow: -3px 3px #FFFFFF;
+
+    font-family: 'Spinnaker', sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+
+    margin-top: 1rem;
+}
+
+a{
+    text-decoration: none;
+}
