@@ -105,7 +105,7 @@ class LogInController {
                 $_SESSION['user_logged_in'] = true;
                 require_once 'src/views/loginsuccess/loginsuccess.php';
             } else {
-                echo "Failed to login user.";
+                require_once 'src/views/loginfailed/loginfailed.php';
             }
         } else {
             require_once 'src/views/loginpage/loginpage.php';

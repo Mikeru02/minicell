@@ -16,7 +16,6 @@
     <link href="https://fonts.cdnfonts.com/css/spinnaker" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/aclonica" rel="stylesheet">
 
-
 </head>
 <body>
     <div class="responsive">
@@ -35,8 +34,8 @@
                     </div>
                     <p class="desc">or use your Phone Number</p>
                     
-                    <input type="text" id="phone-number" name="mobile_num"/>
-                    <input type="password" id="password" name="password"/>
+                    <input type="text" id="phone-number" name="mobile_num" placeholder='Mobile Number' required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                     <div class="buttons">
                         <button class="login-btn">Log In</button>
                         <button class="forgot-pass">Forgot Password</button>
