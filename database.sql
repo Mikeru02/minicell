@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2024 at 05:25 PM
+-- Generation Time: Oct 18, 2024 at 01:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,15 +38,6 @@ CREATE TABLE `products` (
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `image`, `name`, `description`, `price`, `category`, `materials`, `status`) VALUES
-(20240001, 'src/uploads/men1.jpg', 'Traditional  Anime Hoodie', 'Hoodie Inspired by Japanese Anime-Style', '300', 'men', 'cotton', 'active'),
-(20240002, 'src/uploads/men2.jpg', 'Artistic Statue Sweatshirt', 'Sweatshirt Designed with Statue & Typography', '250', 'men', 'cotton', 'active'),
-(20240003, 'src/uploads/men3.jpg', 'Beach Life White-Tee', 'White T-shirt decorated by beach lifestyle ', '150', 'men', 'cotton', 'active');
-
 -- --------------------------------------------------------
 
 --
@@ -78,9 +69,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `mobile_num`, `password`, `role`) VALUES
-(20240001, 'admin', 'admin', 'admin'),
-(20240003, 'hellow', 'hello', 'user'),
-(20240004, 'test', 'test', 'user');
+(20240001, 'admin', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
