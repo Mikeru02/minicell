@@ -35,6 +35,13 @@ class AdminPageController{
             $result = $controller->getProd($searchTerm);
         }
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if (isset($_POST['method']) && $_POST['method'] === 'DELETE'){
+                $result = $controller->delete($_POST['product_id']);
+
+                header('Location: /minicell/index.php/adminpage');
+                exit();
+            }
+            
             $name = $_POST['name'];
             $desc = $_POST['desc'];
             $price = $_POST['price'];
@@ -61,6 +68,7 @@ class AdminPageController{
             header('Location: /minicell/index.php/adminpage');
             exit();
         }
+
 
         require_once 'src/views/adminpage/adminpage.php';
     }

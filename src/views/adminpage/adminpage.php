@@ -50,6 +50,11 @@
                     <form action="/minicell/index.php/adminpage" method="POST">
                         <button type='submit' id='create-btn'>Create</button>
                     </form>
+                    <form action="/minicell/index.php/adminpage" method='POST'>
+                            <input type="hidden" name="method" value="DELETE">
+                            <input type="hidden" name="product_id" value="<?php echo $result['id']; ?>">
+                            <button id='Submit'>Delete</button>
+                    </form>
                 </div>
                 <div id='display-area'>
                     <h3>Product Information</h3>

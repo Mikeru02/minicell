@@ -15,6 +15,12 @@ class ProductController{
 
     public function update($id, $image_dir, $name, $desc, $price, $category, $small, $medium, $large, $materials, $status){
         $result = $this->product->update($id, $image_dir, $name, $desc, $price, $category, $small, $medium, $large, $materials, $status);
+        return $result;
+    }
+
+    public function delete($id){
+        $result = $this->product->delete($id);
+        return $result;
     }
 
     public function getProd($searchName) {

@@ -31,18 +31,24 @@ class Product{
 
         $row = mysqli_fetch_assoc($result);
 
-        $productCount = $row['product_count'] + 1;
-        $numbersOfZeros = 4;
+        $max_query = 'SELECT MAX(id) as max_id FROM products;';
+        $max_result = mysqli_query($conn, $max_query);
+        $max_row = mysqli_fetch_assoc($max_result);
+        $maxId = $max_row['max_id'];
 
-        if ($productCount < 10){
-            $numbersOfZeros = 4;
-        }else if ($productCount < 100){
-            $numbersOfZeros = 3;
+        $productCount = $row['product_count'] + 1;
+
+        $productNumber = str_pad($productCount, 4, '0', STR_PAD_LEFT);
+        $newId = $year . $productNumber;
+
+        if ($newId == $maxId){
+            $productCount = $row['product_count'] + 1 + 1;
+            $productNumber = str_pad($productCount, 4, '0', STR_PAD_LEFT);
+            $newId = $year . $productNumber;
+            return $newId;
         }
 
-        $userNumber = str_pad($productCount, $numbersOfZeros, '0', STR_PAD_LEFT);
-
-        return $year . $userNumber;
+        return $newId;
     }
 
     public function get(){
@@ -89,10 +95,9 @@ class Product{
                     products.name = '$name';
             ";
             $result = mysqli_query($conn, $query);
-    
-            // Fetch the result as an associative array
+
             $row = mysqli_fetch_assoc($result);
-            return $row; // Return the product details including sizes
+            return $row;
         } finally {
             $database->close();
         }
@@ -110,6 +115,21 @@ class Product{
             $result2 = mysqli_query($conn, $query2);
 
             return $result;
+        } finally{
+            $database->close();
+        }
+    }
+
+    public function delete($id){
+        $database = new Database();
+        $conn = $database->connect();
+
+        try{
+            $query = "DELETE FROM products WHERE id='$id';";
+            $result = mysqli_query($conn, $query);
+
+            return $result;
+
         } finally{
             $database->close();
         }
