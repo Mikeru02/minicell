@@ -32,7 +32,7 @@
                         <p id="search">Search</p>
                     </div>
                     <div class="buttons">
-                        <a href="">
+                        <a href="/minicell/index.php/account">
                             <i class="fa-solid fa-user" id="btn"></i>
                         </a>
                         <i class="fa-solid fa-cart-shopping"></i>

@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['admin_logged_in'])) {
-    $_SESSION['admin_logged_in'] = false;
-}
-if (!isset($_SESSION['user_logged_in'])) {
-    $_SESSION['user_logged_in'] = false;
-}
+// if (!isset($_SESSION['admin_logged_in'])) {
+//     $_SESSION['admin_logged_in'] = false;
+// }
+// if (!isset($_SESSION['user_logged_in'])) {
+//     $_SESSION['user_logged_in'] = false;
+// }
 
 require_once 'src/controllers/pagesController.php';
 
@@ -46,6 +46,12 @@ else if (preg_match('/^\/minicell\/index\.php\/homepage/', $_SERVER['REQUEST_URI
         $controller = new NotFoundController();
         $controller->index();
     }
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/account') {
+    if ($_SESSION['user_logged_in'] === true){
+        $controller = new HomePageController();
+        $controller->account();
+    } 
 }
 else{
     $controller = new NotFoundController();

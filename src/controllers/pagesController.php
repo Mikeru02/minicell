@@ -103,6 +103,7 @@ class LogInController {
 
             if ($result) {
                 $_SESSION['user_logged_in'] = true;
+                $_SESSION['user'] = $result;
                 require_once 'src/views/loginsuccess/loginsuccess.php';
             } else {
                 require_once 'src/views/loginfailed/loginfailed.php';
@@ -145,6 +146,10 @@ class HomePageController{
             $result = $controller->getCategory($category);
         }
         require_once 'src/views/homepage/homepage.php';
+    }
+    public function account(){
+
+        require_once 'src/views/accountpage/account.php';
     }
 }
 

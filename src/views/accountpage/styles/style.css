@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    background-color: rgba(8, 44, 75, 0.7);
+    /* background-color: #F6F2F6; */
+}
+
+.responsive{
+    width: 1440px;
+    min-height: 1024px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
+.content{
+    width: 1400px;
+    height: 984px;
+    background-color: rgba(8, 44, 75, 0.7);
+    border-radius: 3rem;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Dela Gothic One";
+    font-size: 3rem;
+}
+
+header i{
+    margin-right: 5rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 10rem;
+}
+
+nav{
+    width: 35rem;
+    color: #FFFFFF;
+    font-family: "Spinnaker";
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+nav > div{
+    display: flex;
+    margin-top: 5rem;
+}
+
+.nav-edit{
+    display: flex;
+    width: inherit;
+}
+
+#edit-area{
+    width: inherit;
+}

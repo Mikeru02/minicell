@@ -51,7 +51,7 @@ class User{
         $database = new Database();
         $conn = $database->connect();
 
-        $query = "SELECT * FROM users WHERE email_address   ='$email_add'";
+        $query = "SELECT * FROM users WHERE email_address='$email_add'";
         $result = mysqli_query($conn, $query);
 
         $user = mysqli_fetch_assoc($result);
