@@ -97,9 +97,9 @@ class LogInController {
         $this->user = new User();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $mobile_num = $_POST['mobile_num'];
+            $email_add = $_POST['email_add'];
             $password = $_POST['password'];
-            $result = $this->user->get($mobile_num, $password);
+            $result = $this->user->get($email_add, $password);
 
             if ($result) {
                 $_SESSION['user_logged_in'] = true;
@@ -119,9 +119,9 @@ class SignUpController {
         $this->user = new User();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $mobile_num = $_POST['mobile_num'];
+            $email_add = $_POST['email_add'];
             $password = $_POST['password'];
-            $result = $this->user->create($mobile_num, $password);
+            $result = $this->user->create($email_add, $password);
 
             if ($result) {
                 // Success message or redirect after successful sign-up

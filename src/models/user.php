@@ -2,13 +2,14 @@
 require_once 'src/config/database.php';
 
 class User{
-    public function create($mobile_num, $password){
+    public function create($email_add, $password){
         $database = new Database();
         $conn = $database->connect();
         $userId = $this->generateId();
+        $hassed_password = hash('sha256', $password);
 
         try{
-            $query = "INSERT INTO users (id, mobile_num, password, role) VALUES ('$userId', '$mobile_num', '$password', 'user')";
+            $query = "INSERT INTO users (id, email_address, password, role) VALUES ('$userId', '$email_add', '$hassed_password', 'user')";
             $result = mysqli_query($conn, $query);
             return $result;
         } finally{
@@ -35,31 +36,32 @@ class User{
         $maxId = $maxIdRow['max_id'];
 
         $userNumber = str_pad($userCount, 4, '0', STR_PAD_LEFT);
-        $newId = $year . $userNumber;
+        $newId = "user_" . $year . $userNumber;
 
-        if ($newId == $maxId){
+        while ($newId == $maxId){
             $userCount = $row['user_count'] + 1 + 1;
             $userNumber = str_pad($userCount, 4, '0', STR_PAD_LEFT);
-            $newId = $year . $userNumber;
-            return $newId;
+            $newId = "user_". $year . $userNumber;
         }
 
         return $newId;
     }
 
-    public function get($mobile_num, $password){
+    public function get($email_add, $password){
         $database = new Database();
         $conn = $database->connect();
 
-        $query = "SELECT * FROM users WHERE mobile_num='$mobile_num'";
+        $query = "SELECT * FROM users WHERE email_address   ='$email_add'";
         $result = mysqli_query($conn, $query);
 
         $user = mysqli_fetch_assoc($result);
 
+        $hassed_password = hash('sha256', $password);
+
         if ($user){
-            if ($password == $user['password'] && $user['role'] == 'user'){
+            if ($hassed_password == $user['password'] && $user['role'] == 'user'){
                 return $user;
-            }else if ($password == $user['password'] && $user['role'] == 'admin'){
+            }else if ($hassed_password == $user['password'] && $user['role'] == 'admin'){
                 return $user;
             }
         } else{

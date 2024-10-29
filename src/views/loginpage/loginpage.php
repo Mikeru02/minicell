@@ -34,7 +34,7 @@
                     </div>
                     <p class="desc">or use your Phone Number</p>
                     
-                    <input type="text" id="phone-number" name="mobile_num" placeholder='Mobile Number' required>
+                    <input type="text" id="phone-number" name="email_add" placeholder='Mobile Number' required>
                     <input type="password" id="password" name="password" placeholder="Password" required>
                     <div class="buttons">
                         <button class="login-btn">Log In</button>
