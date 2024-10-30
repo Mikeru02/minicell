@@ -68,4 +68,50 @@ nav > div{
 
 #edit-area{
     width: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Spinnaker";
+    font-size: 3rem;
+}
+
+form{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 890px;
+    justify-content: flex-end;
+}
+
+form div{
+    margin: 1rem;
+}
+
+form div input{
+    width: 42.3rem;
+    height: 7rem;
+    font-size: 2rem;
+}
+
+#email-address{
+    width: 87rem !important;
+}
+
+.action-btn{
+    width: 20rem;
+    height: 5rem;
+    border-radius: 10rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: solid #ffffff;
+    cursor: pointer;
+    box-shadow: -3px 3px #FFFFFF;
+    margin: 1rem;
+    font-family: 'Spinnaker', sans-serif;
+    font-size: 1.5rem;
+    color: #ffffff;
 }

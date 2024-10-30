@@ -52,6 +52,33 @@
                     </nav>
                     <div id="edit-area">
                         <p>My Account</p>
+                        <p>Manage your Account Information</p>
+                        <form action="/minicell/index.php/account" method="POST">
+                            <div>
+                                <p>Username</p>
+                                <input type="text" name="username" placeholder="Enter Username" >
+                            </div>
+                            <div>
+                                <p>Name</p>
+                                <input type="text" name="name" placeholder="Enter Full Name" >
+                            </div>
+                            <div>
+                                <p>Email Address</p>
+                                <input type="text" id="email-address" name="email_address" placeholder="Enter Email Address" value="<?php echo $_SESSION['user']['email_address']?>" required>
+                            </div>
+                            <div>
+                                <p>Phone Number</p>
+                                <input type="text" name="phone" placeholder="Enter Phone Number">
+                            </div>
+                            <div>
+                                <p>Birthdate</p>
+                                <input type="date" name="birthdate" placeholder="">
+                            </div>
+                            <a href="/minicell/index.php/logout" class="action-btn">
+                                Logout
+                            </a>
+                            <button class="action-btn">Save Changes</button>
+                        </form>
                     </div>
                 </div>
             </div>

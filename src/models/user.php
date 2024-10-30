@@ -68,5 +68,19 @@ class User{
             return null;
         }
     }
+
+    public function update($userId, $username, $name, $phone_num, $birtdate){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "UPDATE users SET username='$username', name='$name', mobile_number='$phone_num', birthdate='$birtdate' WHERE id='$userId'";
+            $result = mysqli_query($conn, $query);
+            return $result;
+        }finally{
+            $database->close();
+        }
+        
+
+    }
 }
 ?>

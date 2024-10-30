@@ -1,5 +1,6 @@
 <?php
 require_once 'src/controllers/productController.php';
+require_once 'src/controllers/userController.php';
 require_once 'src/models/user.php';
 require_once 'src/models/product.php';
 
@@ -74,7 +75,7 @@ class AdminPageController{
     }
 
     public function logout() {
-        session_start();
+        // session_start();
         $_SESSION['admin_logged_in'] = false; 
         session_destroy();
         header('Location: /minicell/index.php');
@@ -148,8 +149,26 @@ class HomePageController{
         require_once 'src/views/homepage/homepage.php';
     }
     public function account(){
+        $controller = new UserController();
 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $userId = $_SESSION['user']['id'];
+            $username = $_POST['username'];
+            $name = $_POST['name'];
+            $phone_num = $_POST['phone'];
+            $birthdate = $_POST['birthdate'];
+            $result = $controller->update($userId, $username, $name, $phone_num, $birthdate);
+
+            header('Location: /minicell/index.php/homepage');
+            exit();
+        }
         require_once 'src/views/accountpage/account.php';
+    }
+    public function logout(){
+        $_SESSION['user_logged_in'] = false; 
+        session_destroy();
+        header('Location: /minicell/index.php');
+        exit();
     }
 }
 
