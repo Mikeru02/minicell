@@ -141,6 +141,8 @@ class SignUpController {
 class HomePageController{
     public function index(){
         $controller = new ProductController();
+        $products = $controller->displayProducts();
+        $result = [];
 
         if ($_SERVER['REQUEST_METHOD'] == 'GET'  && isset($_GET['category'])){
             $category = strtolower($_GET['category']);

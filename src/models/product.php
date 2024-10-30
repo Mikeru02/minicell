@@ -11,7 +11,7 @@ class Product{
             $query = "INSERT INTO products (id, image, name, description, price, category, materials, status) VALUES ('$product_id', '$image_dir', '$name','$desc', '$price', '$category', '$materials', '$status');";
             $result = mysqli_query($conn, $query);
 
-            $query2 = "INSERT INTO product_sizes (prod_id, small, medium, large) VALUES ('$product_id', '$small', '$medium', '$large');";
+            $query2 = "INSERT INTO products_sizes (id, small, medium, large) VALUES ('$product_id', '$small', '$medium', '$large');";
             $result2 = mysqli_query($conn, $query2);
 
             return $result;
@@ -39,13 +39,12 @@ class Product{
         $productCount = $row['product_count'] + 1;
 
         $productNumber = str_pad($productCount, 4, '0', STR_PAD_LEFT);
-        $newId = $year . $productNumber;
+        $newId = "product_" . $year . $productNumber;
 
-        if ($newId == $maxId){
+        while ($newId == $maxId){
             $productCount = $row['product_count'] + 1 + 1;
             $productNumber = str_pad($productCount, 4, '0', STR_PAD_LEFT);
-            $newId = $year . $productNumber;
-            return $newId;
+            $newId = "product_" . $year . $productNumber;
         }
 
         return $newId;
@@ -83,14 +82,14 @@ class Product{
                     products.price,
                     products.category,
                     products.materials,
-                    product_sizes.small,
-                    product_sizes.medium,
-                    product_sizes.large,
+                    products_sizes.small,
+                    products_sizes.medium,
+                    products_sizes.large,
                     products.status
                 FROM
                     products
                 JOIN
-                    product_sizes ON products.id = product_sizes.prod_id
+                    products_sizes ON products.id = products_sizes.id
                 WHERE
                     products.name = '$name';
             ";
@@ -111,7 +110,7 @@ class Product{
             $query = "UPDATE products SET image='$image_dir', description='$desc', category='$category', materials='$materials', status='$status' WHERE id='$id';";
             $result = mysqli_query($conn, $query);
 
-            $query2 = "UPDATE product_sizes SET small='$small', medium='$medium', large='$large' WHERE prod_id='$id';";
+            $query2 = "UPDATE products_sizes SET small='$small', medium='$medium', large='$large' WHERE prod_id='$id';";
             $result2 = mysqli_query($conn, $query2);
 
             return $result;

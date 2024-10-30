@@ -94,11 +94,17 @@
     </body>
     <script>
         document.addEventListener('DOMContentLoaded', function(){
-            var result = <?php echo json_encode($result);?>;
-            console.log(result);
+            let prods = <?php echo json_encode($products); ?>;
+            let prod = <?php echo json_encode($result);?>;
+            let result;
 
+            if (prod.length === 0){
+                result = prods;
+            }else{
+                result = prod;
+            }
             const displayArea = document.getElementById('product-display-area');
-
+            
             if (result){
                 for (let i = 0; i < result.length; i++){
                     let product = result[i];
