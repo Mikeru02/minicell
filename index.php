@@ -18,6 +18,10 @@ else if($_SERVER['REQUEST_URI'] == '/minicell/index.php/faqs'){
     $controller = new FAQSController();
     $controller->index();
 }
+else if($_SERVER['REQUEST_URI'] == '/minicell/index.php/products'){
+    $controller = new CartController();
+    $controller->fetchProducts();
+}
 else if($_SERVER['REQUEST_URI'] == '/minicell/index.php/cart'){
     $controller = new CartController();
     $controller->index();

@@ -98,13 +98,14 @@ class User{
         }
     }
 
-    public function getCart($userId,$prodId,$quantity){
+    public function getCart($userId){
         $database = new Database();
         $conn = $database->connect();
         try{
             $query = "SELECT * FROM cart WHERE userId='$userId'";
             $result = mysqli_query($conn, $query);
-            return $result;
+            $product = mysqli_fetch_all($result);
+            return $product;
         }finally{
             $database->close();
         }
@@ -133,5 +134,7 @@ class User{
             $database->close();
         }
     }
+
+    public function removeProd($userId, $prodId)
 }
 ?>

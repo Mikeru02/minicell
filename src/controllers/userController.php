@@ -21,8 +21,8 @@ class UserController{
         return $result;
     }
 
-    public function getCart($userId,$prodId, $quantity){
-        $result = $this->user->getCart($userId,$prodId, $quantity);
+    public function getCart($userId){
+        $result = $this->user->getCart($userId);
         return $result;
     }
 

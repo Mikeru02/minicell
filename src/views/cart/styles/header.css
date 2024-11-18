@@ -1,0 +1,28 @@
+header{
+    width: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.buttons{
+    margin-right: 2rem;
+}
+
+.buttons i{
+    font-size: 5rem;
+    color: black;
+    margin: 0em 2rem;
+
+}
+
+h1{
+    font-family: 'Dela Gothic One';
+    font-size: 3rem;
+}

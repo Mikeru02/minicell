@@ -42,5 +42,9 @@ class ProductController{
         $result = $this->product->getCategory($category);
         return $result;
     }
+
+    public function removeProd($userId,$prodId){
+        
+    }
 }
 ?>

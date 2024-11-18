@@ -216,7 +216,29 @@ class HomePageController{
 
 class CartController{
     public function index(){
+        $controller = new UserController();
+        $controller2 = new ProductController();
+
+        $products = $controller->getCart($_SESSION['user']['id']);
         require_once 'src/views/cart/cart.php';
+    }
+
+    public function fetchProducts(){
+        $controller = new ProductController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = json_decode(file_get_contents('php://input'), true);
+            $result = $controller->getSpecific($data['prodId']);
+            echo json_encode($result);
+        }
+    }
+
+    public function deleteProduct(){
+        $controller = new ProductController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = json_decode(file_get_contents('php://input'), true);
+            $result = $controller->getSpecific($data['prodId']);
+            echo json_encode($result);
+        }
     }
 }
 
