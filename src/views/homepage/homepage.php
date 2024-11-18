@@ -35,7 +35,9 @@
                         <a href="/minicell/index.php/account">
                             <i class="fa-solid fa-user" id="btn"></i>
                         </a>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <a href='/minicell/index.php/cart'>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
                     </div>
                 </nav>
             </header>
@@ -145,10 +147,15 @@
                     price.setAttribute('id', 'product-price');
                     price.innerHTML = `${product.price} PHP`;
 
+                    const addcart = document.createElement('button');
+                    addcart.setAttribute('class', 'addtocart');
+                    addcart.innerHTML = 'Add to Cart';
+
                     productContainer.appendChild(image);
                     productContainer.appendChild(name);
                     productContainer.appendChild(desc);
                     productContainer.appendChild(price);
+                    productContainer.appendChild(addcart);
 
                     displayArea.appendChild(productContainer);
                 });

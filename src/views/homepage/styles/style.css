@@ -83,3 +83,13 @@ body{
     flex-direction: column;
     align-items: center;
 }
+
+.addtocart{
+    width: 15rem;
+    height: 4rem;
+    background-color: #335570;
+    color: white;
+    font-family: 'Spinnaker';
+    border-radius: 2rem;
+    border: none;
+}

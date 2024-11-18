@@ -80,8 +80,58 @@ class User{
         }finally{
             $database->close();
         }
-        
+    }
 
+    public function checkCart($userId,$prodId, $size,$quantity){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "SELECT * FROM cart WHERE userId='$userId' AND productId='$prodId' AND size='$size'";
+            $result = mysqli_query($conn, $query);
+            if (mysqli_num_rows($result) > 0) {
+                return true; 
+            } else {
+                return false;
+            }
+        }finally{
+            $database->close();
+        }
+    }
+
+    public function getCart($userId,$prodId,$quantity){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "SELECT * FROM cart WHERE userId='$userId'";
+            $result = mysqli_query($conn, $query);
+            return $result;
+        }finally{
+            $database->close();
+        }
+    }
+
+    public function addToCart($userId,$prodId, $size, $quantity){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "INSERT INTO cart (userId, productId, size, quantity, datetime) VALUES ('$userId','$prodId', '$size', '$quantity',NOW())";
+            $result = mysqli_query($conn, $query);
+            return $result;
+        }finally{
+            $database->close();
+        }
+    }
+
+    public function updateCart($userId, $prodId, $size,$quantity){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "UPDATE cart SET quantity='$quantity' WHERE productId='$prodId' AND userId='$userId' AND size='$size'";
+            $result = mysqli_query($conn, $query);
+            return $result;
+        }finally{
+            $database->close();
+        }
     }
 }
 ?>

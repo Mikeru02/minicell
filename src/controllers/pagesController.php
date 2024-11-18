@@ -4,6 +4,12 @@ require_once 'src/controllers/userController.php';
 require_once 'src/models/user.php';
 require_once 'src/models/product.php';
 
+class FAQSController{
+    public function index(){
+        require_once 'src/views/faqs/faqs.php';
+    }
+}
+
 // Admin Login
 class AdminLoginController{
     public function index(){
@@ -187,13 +193,32 @@ class HomePageController{
         header('Location: /minicell/index.php');
         exit();
     }
+
     public function prod($matches){
         $controller = new ProductController();
         $product = $controller->getSpecific($matches);
         require_once 'src/views/viewproduct/viewproduct.php';
     }
+
+    public function addtocart(){
+        $controller = new UserController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = json_decode(file_get_contents('php://input'), true);
+            $checkCart = $controller->checkCart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
+            if ($checkCart){
+                $result = $controller->updateCart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
+            }else{
+                $result = $controller->addtocart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
+            }
+        }
+    }
 }
 
+class CartController{
+    public function index(){
+        require_once 'src/views/cart/cart.php';
+    }
+}
 
 // Not Found Page
 class NotFoundController{

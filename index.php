@@ -14,6 +14,14 @@ if ($_SERVER['REQUEST_URI'] == '/minicell/index.php') {
     $controller = new LandingController();
     $controller->index();
 }
+else if($_SERVER['REQUEST_URI'] == '/minicell/index.php/faqs'){
+    $controller = new FAQSController();
+    $controller->index();
+}
+else if($_SERVER['REQUEST_URI'] == '/minicell/index.php/cart'){
+    $controller = new CartController();
+    $controller->index();
+}
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/signUp'){
     $controller = new SignUpController();
     $controller->index();
@@ -62,11 +70,16 @@ else if (preg_match('/\/minicell\/index\.php\/homepage/', $_SERVER['REQUEST_URI'
         $controller->index();
     }
 }
-
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/account') {
     if ($_SESSION['user_logged_in'] === true){
         $controller = new HomePageController();
         $controller->account();
+    } 
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/addtocart') {
+    if ($_SESSION['user_logged_in'] === true){
+        $controller = new HomePageController();
+        $controller->addtocart();
     } 
 }
 else{

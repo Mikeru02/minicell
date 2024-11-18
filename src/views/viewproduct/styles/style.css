@@ -110,7 +110,7 @@ body{
     color: #66FF00;
 }
 
-.add, .buy{
+#add, #buy{
     width: 34rem;
     height: 5rem;
     color: white;
@@ -190,3 +190,37 @@ body{
     border-radius: 2rem;
     margin: .5rem   ;
 }
+
+input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+
+label {
+    color: black; 
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 20px;
+    font-family: 'Spinnaker';
+    font-size: 1.5rem;
+}
+
+input[type=radio]:checked + label {
+    color: white;
+    background: black; 
+}
+
+label + input[type=radio] + label {
+    border-left: solid 3px black; 
+}
+
+.radio-group {
+    border: solid 3px black; 
+    display: inline-block;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+

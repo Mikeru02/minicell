@@ -1,0 +1,14 @@
+header{
+    display: flex;
+    width: inherit;
+    align-items: center;
+    padding-left: 5rem;
+}
+
+h1{
+    width: inherit;
+    text-align: center;
+    height: fit-content;
+    font-family: 'Dela Gothic One';
+    font-size: 3rem;
+}

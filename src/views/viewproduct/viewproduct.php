@@ -30,7 +30,12 @@
                         <a href="/minicell/index.php/account">
                             <i class="fa-solid fa-user" id="btn"></i>
                         </a>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <a href='/minicell/index.php/cart'>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <a href='/minicell/index.php/faqs'>
+                            <i class="fa-solid fa-question" id="question-mark"></i>
+                        </a>
                     </div>
                 </nav>
             </header>
@@ -39,11 +44,11 @@
                     <p class="product-header"># Product Infomation</>
                     <div id="product-display-area"></div>
                     <div class="backBtns">
-                        <a>
+                        <a href='/minicell/index.php/homepage'>
                             <i class="fa-solid fa-arrow-left"></i>
                             <p>Back to Main Page</p>
                         </a>
-                        <a>
+                        <a id="view-next" href=''>
                             <p>View Next Product</p>
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -56,9 +61,28 @@
         </div>
     </body>
     <script>
+        
+        const viewNext = document.querySelector('#view-next');
+
+        viewNext.addEventListener('click', function(event){
+            event.preventDefault();
+            const currentUrl = window.location.href;
+
+            const pattern = /\/minicell\/index\.php\/homepage\/(\w+)/;
+            const match = currentUrl.match(pattern);
+
+            const pattern2 = /product_(\d+)/
+            const match2 = match[1].match(pattern2);
+
+            const numId = parseInt(match2[1]);
+            const nextId = numId + 1;
+            
+            window.location.href = `/minicell/index.php/homepage/product_${nextId}`;
+
+        })
         document.addEventListener('DOMContentLoaded', function(){
             let prod = <?php echo json_encode($product); ?>;
-            console.log(prod)
+            const user = <?php echo json_encode($_SESSION['user']); ?>;
             const displayArea = document.getElementById('product-display-area');
             
             displayArea.innerHTML = `
@@ -84,18 +108,48 @@
                         <p id="product-desc">${prod.description}</p>
                         <p class="size-header">Sizes<p>
                         <div id="sizes">
-                            <p class="sizebtn">Small</p>
-                            <p class="sizebtn">Medium</p>
-                            <p class="sizebtn">Large</p>
+                                <div class="radio-group">
+                                    <input type="radio" id="option-one" name="selector" value="small">
+                                    <label for="option-one">Small</label>
+                                    <input type="radio" id="option-two" name="selector" value="medium">
+                                    <label for="option-two">Medium</label>
+                                    <input type="radio" id="option-three" name="selector" value="large">
+                                    <label for="option-three">Large</label>
+                                </div>
                         </div>
                         <div class="buttons-action">
-                            <a class="add">Add to my Cart</a>
-                            <a class="buy">Buy Now</a>
+                            <a id="add" class="${prod.id}">Add to my Cart</a>
+                            <a id="buy" class="${prod.id}">Buy Now</a>
                             <i class="fa-solid fa-heart"></i>
                         </div>
                     </div>
                 </div>
             `;
+            const addToCart = document.querySelector('#add');
+            addToCart.addEventListener('click', function(){
+                const selectedSize = document.querySelector('input[name="selector"]:checked');
+                const size = selectedSize.value;
+                console.log(size)
+                fetch(`/minicell/index.php/addtocart`,{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body:JSON.stringify({
+                        prodId: addToCart.className,
+                        userId: user.id,
+                        size: size,
+                        quantity: 1
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                    })
+            })
+
         });
+
+        
     </script>
 </html>

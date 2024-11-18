@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+.responsive-container{
+    width: 1384px;
+    height: 954px;
+    background-color: rgba(51, 89, 112, 0.72);
+    margin: auto;
+}
+
+main{
+    padding: 5rem;
+    color: white;
+}
+
+h2{
+    font-size: 5rem;
+    font-family: 'Spinnaker';
+}
+
+.question{
+    font-family: 'Spinnaker';
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.answer{
+    font-family: 'Spinnaker';
+    font-size: 2rem;
+}
