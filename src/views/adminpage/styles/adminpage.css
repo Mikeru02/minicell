@@ -190,7 +190,15 @@ svg{
 #create-product-form{
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    padding: 3rem;
 }
+
+#create-product-form div{
+    margin: 0 2rem;
+    text-align: left;
+}
+
 
 #content-fields *{
     margin: 1rem;
@@ -230,6 +238,7 @@ svg{
 
 input{
     border: 1px solid black;
+    height: 3.5rem;
 }
 
 #search-form{
@@ -243,4 +252,14 @@ input{
     border-radius: 1rem;
     font-family: 'Spinnaker', sans-serif;
     font-size: 2rem;
+}
+
+#images{
+    display: flex;
+    flex-direction: column;
+}
+
+#texts{
+    display: flex;
+    flex-direction: column;
 }

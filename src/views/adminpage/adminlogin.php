@@ -29,8 +29,8 @@
             <div class="left-side">
                 <form action="/minicell/index.php/admin" method="POST">
                     <p class="header">Log In to Minicell</p>
-                    <input type="text" id="mobile_num" name="mobile_num" value="mobile_num" onclick="clearInput('mobile_num')" onblur="resetInput('mobile_num')"/>
-                    <input type="text" id="password" name="password" value="password" onclick="clearInput('password')" onblur="resetInput('password')"/>
+                    <input type="text" id="mobile_num" name="mobile_num" placeholder="Username"/>
+                    <input type="password" id="password" name="password" placeholder="Password"/>
                     <div class="buttons">
                         <button class="login-btn">Log In</button>
                     </div>

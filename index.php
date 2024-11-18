@@ -44,7 +44,16 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/logout') {
         $controller->logout();
     }
 }
-else if (preg_match('/^\/minicell\/index\.php\/homepage/', $_SERVER['REQUEST_URI'])){
+else if (preg_match('/\/minicell\/index\.php\/homepage\/(\w+)/', $_SERVER['REQUEST_URI'], $matches)){
+    if ($_SESSION['user_logged_in'] === true){
+        $controller = new HomePageController();
+        $controller->prod($matches[1]);
+    }else{
+        $controller = new NotFoundController();
+        $controller->index();
+    }
+}
+else if (preg_match('/\/minicell\/index\.php\/homepage/', $_SERVER['REQUEST_URI'])){
     if ($_SESSION['user_logged_in'] === true){
         $controller = new HomePageController();
         $controller->index();
@@ -53,6 +62,7 @@ else if (preg_match('/^\/minicell\/index\.php\/homepage/', $_SERVER['REQUEST_URI
         $controller->index();
     }
 }
+
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/account') {
     if ($_SESSION['user_logged_in'] === true){
         $controller = new HomePageController();

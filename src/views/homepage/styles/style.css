@@ -38,15 +38,19 @@ body{
 }
 
 #product-display-area{
-    min-height: 900px;
+    /* min-height: 900px; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 2rem;
 }
 
 .product-container{
     margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #product-image{
@@ -72,4 +76,10 @@ body{
     font-size: 2rem;
     font-family: 'Dela Gothic One', sans-serif;
     text-align: right;
+}
+
+.noDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

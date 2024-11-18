@@ -47,9 +47,7 @@
                         </div>
                         <button type='submit' id='search-btn'>Search</button>
                     </form>
-                    <form action="/minicell/index.php/adminpage" method="POST">
-                        <button type='submit' id='create-btn'>Create</button>
-                    </form>
+                    <button id='create-btn'>Create</button>
                     <form action="/minicell/index.php/adminpage" method='POST'>
                             <input type="hidden" name="method" value="DELETE">
                             <input type="hidden" name="product_id" value="<?php echo $result['id']; ?>">
@@ -59,37 +57,46 @@
                 <div id='display-area'>
                     <h3>Product Information</h3>
                     <form id='create-product-form' action='/minicell/index.php/adminpage' method='POST' enctype='multipart/form-data'>
-                        <div id='content-fields'>
-                            <p>Image</p>
-                            <p>Name</p>
-                            <p>Decription</p>
-                            <p>Price</p>
-                        </div>
-                        <div id='input-fields'>
+                        <div id="images">
+                            <label for="img">Main</label>
                             <input type="file" accept="image/*" id="img" name="img" required>
+                            <label for="img">Support</label>
+                            <input type="file" accept="image/*" id="img1" name="img1" >
+                            <label for="img2">Support</label>
+                            <input type="file" accept="image/*" id="img3" name="img2" >
+                            <label for="img3">Support</label>
+                            <input type="file" accept="image/*" id="img3" name="img3" >
+                        </div>
+                        <div id="texts">
+                            <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
+
+                            <label for="desc">Description</label>
                             <input type="text" id="desc" name="desc" required>
+
+                            <label for="price">Price</label>
                             <input type="text" id="price" name="price" required>
-                        </div>
-                        <div id='content-fields'>
-                            <p>Category</p>
-                            <p>Materials</p>
-                            <p>Stocks</p>
-                            <p>Status</p>
-                        </div>
-                        <div id='input-fields'>
+                            
+                            <label for="category">Category</label>
                             <input type="text" id="category" name="category" required>
+
+                            <label for="material">Material</label>
                             <input type="text" id="material" name="material" required>
+
                             <div id='sizes'>
-                                <p>S:</p>
+                                <label for="small">S:</label>
                                 <input type="number" id="size-small" name="small" required>
-                                <p>M:</p>
+
+                                <label for="medium">M:</label>
                                 <input type="number" id="size-medium" name="medium" required>
-                                <p>L:</p>
+
+                                <label for="large">L:</label>
                                 <input type="number" id="size-large" name="large" required>
                             </div>
-                            <input type="text" id="status" name="status" required>
                             
+                            <label for="status">Status</label>
+                            <input type="text" id="status" name="status" required>
+
                         </div>
                         <button id='Submit'>Submit</button>
                     </form>
@@ -99,6 +106,11 @@
     </div>
 </body>
 <script>
+    const createBtn = document.querySelector('#create-btn');
+    const createForm = document.querySelector('#create-product-form');
+    createBtn.addEventListener('click', function(){
+        createForm.reset();
+    })
     document.addEventListener('DOMContentLoaded', function() {
         var result = <?php echo json_encode($result); ?>;
 

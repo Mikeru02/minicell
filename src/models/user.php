@@ -61,7 +61,8 @@ class User{
         if ($user){
             if ($hassed_password == $user['password'] && $user['role'] == 'user'){
                 return $user;
-            }else if ($hassed_password == $user['password'] && $user['role'] == 'admin'){
+            }
+            if ($hassed_password == $user['password'] && $user['role'] == 'admin'){
                 return $user;
             }
         } else{

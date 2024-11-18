@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
+body{
+    background-color: rgba(8, 44, 75, 0.7);
+}
+
+.responsive-container{
+    width: 1440px;
+    min-height: 1024px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+#h2-title{
+    font-family: 'Dela Gothic One', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.nav{
+    background-color: transparent;
+    border: none;
+    font-size: 3rem;
+    font-family: 'Spinnaker', sans-serif;
+    font-weight: bold;
+}
+
+#product-display-area{
+    /* min-height: 900px; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-container{
+    margin: 2rem 0;
+    display: flex;
+    height: fit-content;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#product-image{
+    width: 50rem;
+    height: 50rem;
+    border-radius: 5rem;
+    margin-bottom: 2rem;
+}
+
+#product-name{
+    width: inherit;
+    font-size: 4rem;
+    font-family: 'Dela Gothic One', sans-serif;
+    margin-bottom: 1rem;
+}
+
+#product-desc{
+    width: 30rem;
+    font-size: 1.8rem;
+    font-family: 'Spinnaker', sans-serif;
+    margin: 1rem 0;
+}
+
+#product-price{
+    width: 30rem;
+    font-size: 3rem;
+    font-family: 'Dela Gothic One', sans-serif;
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.noDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#text{
+    width: 80rem;
+    height: 50rem;
+    padding: 1rem;
+    margin-left: 4rem;
+}
+
+.size-header{
+    font-family: 'Spinnaker';
+    font-size: 3rem;
+}
+
+.buttons-action{
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.buttons-action i{
+    font-size: 5rem;
+    color: #66FF00;
+}
+
+.add, .buy{
+    width: 34rem;
+    height: 5rem;
+    color: white;
+    background-color: #335570;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Spinnaker';
+    padding: 1rem;
+    border-radius: 5rem;
+    margin-right: 2rem;
+}
+
+#sizes{
+    display: flex;
+}
+
+.sizebtn{
+    height: 4.3rem;
+    width: 10.5rem;
+    background-color: #E4E4E4;
+    margin-right: 2rem;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.8rem;
+    font-family: 'Spinnaker';
+    border-radius: 1rem;
+}
+
+.stars i{
+    font-size: 2rem;
+    color: #FFD800;
+}
+
+.support-image{
+    width: 14rem;
+    height: 14rem;
+    margin: .5rem;
+    object-fit: cover;
+}
+
+.images{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.product-header{
+    font-size: 5rem;
+    font-family: 'Dela Gothic One';
+    text-align: center;
+}
+
+.backBtns{
+    display: flex;
+    justify-content: space-between;
+}
+
+.backBtns a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 21rem;
+    height: 4.8rem;
+    background-color: #335970;
+    font-family: 'Spinnaker';
+    color: white;
+    font-size: 1.5rem;
+    margin: 0 5rem;
+    border-radius: 5rem;
+}
+
+.backBtns a i{
+    padding: .5rem;
+    background-color: white;
+    color: #335970;
+    border-radius: 2rem;
+    margin: .5rem   ;
+}

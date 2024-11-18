@@ -58,12 +58,27 @@ class AdminPageController{
             $image_dir = 'src/uploads/'. $image;
             move_uploaded_file($temporary, $image_dir);
 
+            $image1 = $_FILES['img1']['name'];
+            $temporary1 = $_FILES['img1']['tmp_name'];
+            $image_dir1 = 'src/uploads/'. $image1;
+            move_uploaded_file($temporary1, $image_dir1);
+
+            $image2 = $_FILES['img2']['name'];
+            $temporary2 = $_FILES['img2']['tmp_name'];
+            $image_dir2 = 'src/uploads/'. $image2;
+            move_uploaded_file($temporary2, $image_dir2);
+
+            $image3 = $_FILES['img3']['name'];
+            $temporary3 = $_FILES['img3']['tmp_name'];
+            $image_dir3 = 'src/uploads/'. $image3;
+            move_uploaded_file($temporary3, $image_dir3);
+
             $existingProduct = $controller->getProd($name);
 
             if ($existingProduct) {
-                $result = $controller->update($existingProduct['id'], $image_dir, $name, $desc, $price, $category, $small, $medium, $large, $material, $status);
+                $result = $controller->update($existingProduct['id'], $image_dir, $image_dir1, $image_dir2, $image_dir3, $name, $desc, $price, $category, $small, $medium, $large, $material, $status);
             } else {
-                $result = $controller->create($image_dir, $name, $desc, $price, $category, $small, $medium, $large, $material, $status);
+                $result = $controller->create($image_dir, $image_dir1, $image_dir2, $image_dir3, $name, $desc, $price, $category, $small, $medium, $large, $material, $status);
             }
 
             header('Location: /minicell/index.php/adminpage');
@@ -172,7 +187,13 @@ class HomePageController{
         header('Location: /minicell/index.php');
         exit();
     }
+    public function prod($matches){
+        $controller = new ProductController();
+        $product = $controller->getSpecific($matches);
+        require_once 'src/views/viewproduct/viewproduct.php';
+    }
 }
+
 
 // Not Found Page
 class NotFoundController{
