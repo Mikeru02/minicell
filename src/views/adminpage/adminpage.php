@@ -33,6 +33,7 @@
                 <ul>
                     <li id="manage-products">Manage Products</li>
                     <li id="vouchers">Vouchers</li>
+                    <li id="orders">Orders</li>
                 </ul>
                 <form action="/minicell/index.php/logout" method="POST" style="display: inline;">
                     <button class="logout" type="submit">Logout</button>
@@ -108,6 +109,13 @@
 <script>
     const createBtn = document.querySelector('#create-btn');
     const createForm = document.querySelector('#create-product-form');
+    const ordersBTN = document.querySelector('#orders');
+    const contentArea = document.querySelector('#content-area');
+
+
+    ordersBTN.addEventListener('click', function(){
+        contentArea.innerHTML ='';
+    })
     createBtn.addEventListener('click', function(){
         createForm.reset();
     })

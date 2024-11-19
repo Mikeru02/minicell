@@ -113,6 +113,7 @@
                 });
                 const cartData = await cartResponse.json();
                 const prodId = cartData[0][2];
+                console.log(cartData[0][4])
 
                 const productResponse = await fetch('/minicell/index.php/products', {
                     method: 'POST',
@@ -124,9 +125,13 @@
                     })
                 });
                 const productData = await productResponse.json();
+                console.log(productData);
 
                 const prodPrice = parseInt(productData.price);
-                subtotal += prodPrice;
+                const qty = parseInt(cartData[0][4])
+                let gross = prodPrice * qty;
+                console.log(qty);
+                subtotal += gross;
 
                 container.innerHTML += `
                     <div class="products">

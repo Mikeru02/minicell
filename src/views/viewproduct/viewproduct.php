@@ -46,7 +46,7 @@
             </header>
             <main id="main">
                 <section id="product-page" class="product-page">
-                    <p class="product-header"># Product Infomation</>
+                    <p class="product-header"># Product Information</>
                     <div id="product-display-area"></div>
                     <div class="backBtns">
                         <a href='/minicell/index.php/homepage'>
