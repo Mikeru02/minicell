@@ -98,7 +98,7 @@
                                     <input type="checkbox" id="${product[0]}" class="prod-checkbox" name="selector">
                                     <img src="/minicell/${data.image}" class="prod-image" />
                                     <p class="prod-name"># ${data.name}</p>
-                                    <input type="number" value="${product[4]}" class="prod-quantity" id="${product[0]}">
+                                    <input type="number" value="${product[4]}" class="prod-quantity" id="${product[0]}" min="1">
                                     <p class="prod-size">${product[3]}</p>
                                     <p class="prod-price">₱${data.price}.00</p>
                                     <i class="fa-solid fa-trash-can trashcan" id="${product[0]}"></i>

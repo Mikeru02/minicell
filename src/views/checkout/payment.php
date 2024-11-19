@@ -144,6 +144,7 @@
         const brgy = document.querySelector('#brgy');
         const city = document.querySelector('#city');
         const prov = document.querySelector('#prov');
+        const subtotal = document.querySelector('#subtotal');
 
         let prodHTML= '';
 
@@ -212,11 +213,12 @@
                     email: emailval,
                     paymentOption: paymentval,
                     shippingAddress: fulladd,
+                    subtotal: subtotal.innerHTML
                 })
             })
 
-            const data = await response.json();
-            console.log(data);
+            // const data = await response.json();
+            window.location.href = '/minicell/index.php/checkoutsuccess';
         })
     </script>
 </html>

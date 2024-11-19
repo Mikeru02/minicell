@@ -12,8 +12,8 @@ class UserController{
 
     }
 
-    public function update($userId, $username, $name, $phone_number, $birthdate){
-        $this->user->update($userId, $username, $name, $phone_number, $birthdate);
+    public function update($userId, $username, $name, $phone_number, $birthdate, $password){
+        $this->user->update($userId, $username, $name, $phone_number, $birthdate, $password);
     }
 
     public function checkCart($userId, $prodId, $size,$quantity){

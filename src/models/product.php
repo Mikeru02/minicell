@@ -189,5 +189,32 @@ class Product{
             $database->close();
         }
     }
+
+    public function getStocks($productId, $size){
+        $database = new Database();
+        $conn = $database->connect();
+
+        try{
+            $query = "SELECT id, $size FROM products_sizes WHERE id='$productId'";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($result);
+            return $row;
+        }finally{
+            $database->close();
+        }
+    }
+
+    public function updateStocks($productId, $size, $quantity){
+        $database = new Database();
+        $conn = $database->connect();
+
+        try{
+            $query = "UPDATE products_sizes SET $size='$quantity' WHERE id='$productId'";
+            $result = mysqli_query($conn, $query);
+            return $result;
+        }finally{
+            $database->close();
+        }
+    }
 }
 ?>

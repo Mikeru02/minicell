@@ -56,13 +56,13 @@ class User{
 
         $user = mysqli_fetch_assoc($result);
 
-        $hassed_password = hash('sha256', $password);
+        $hashed_password = hash('sha256', $password);
 
         if ($user){
-            if ($hassed_password == $user['password'] && $user['role'] == 'user'){
+            if ($hashed_password == $user['password'] && $user['role'] == 'user'){
                 return $user;
             }
-            if ($hassed_password == $user['password'] && $user['role'] == 'admin'){
+            if ($hashed_password == $user['password'] && $user['role'] == 'admin'){
                 return $user;
             }
         } else{
@@ -90,11 +90,12 @@ class User{
         }
     }
 
-    public function update($userId, $username, $name, $phone_num, $birtdate){
+    public function update($userId, $username, $name, $phone_num, $birtdate, $password){
         $database = new Database();
         $conn = $database->connect();
         try{
-            $query = "UPDATE users SET username='$username', name='$name', mobile_number='$phone_num', birthdate='$birtdate' WHERE id='$userId'";
+            $hash = hash('sha256', $password);
+            $query = "UPDATE users SET username='$username', name='$name', mobile_number='$phone_num', birthdate='$birtdate', password='$hash' WHERE id='$userId'";
             $result = mysqli_query($conn, $query);
             return $result;
         }finally{

@@ -51,5 +51,15 @@ class ProductController{
         $prods = $_SESSION['products'];
         return $prods;
     }
+
+    public function getStocks($productId, $size){
+        $result = $this->product->getStocks($productId, $size);
+        return $result;
+    }
+
+    public function updateStocks($productId, $size, $quantity){
+        $result = $this->product->updateStocks($productId, $size, $quantity);
+        return $result;
+    }
 }
 ?>

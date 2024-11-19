@@ -181,7 +181,8 @@ class HomePageController{
             $name = $_POST['name'];
             $phone_num = $_POST['phone'];
             $birthdate = $_POST['birthdate'];
-            $result = $controller->update($userId, $username, $name, $phone_num, $birthdate);
+            $password = $_POST['password'];
+            $result = $controller->update($userId, $username, $name, $phone_num, $birthdate, $password);
 
             header('Location: /minicell/index.php/homepage');
             exit();
@@ -268,6 +269,10 @@ class CheckOutController{
         require_once 'src/views/checkout/checkout.php';
     }
 
+    public function checkoutSuccess(){
+        require_once 'src/views/checkout/checkoutsuccess.php';
+    }
+
     public function setProds(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = json_decode(file_get_contents('php://input'), true);
@@ -286,17 +291,41 @@ class CheckOutController{
         $userId = $_SESSION['user']['id'];
         $productInCart = $_SESSION['products'];
         $data = json_decode(file_get_contents('php://input'), true);
-        echo print_r($data);
+        $email = $data['email'];
+        $payment = $data['paymentOption'];
+        $address = $data['shippingAddress'];
+        $subtotal = $data['subtotal'];
+        $pattern = '/₱.(\d.+)/';
+        preg_match($pattern, $subtotal, $clean);
+        $orderId = $ordercontroller->generateOrderId();
+        $order = $ordercontroller->create($orderId, $userId, $address, $payment,$email, $clean[1]);
+
 
         foreach ($productInCart as $value){
             $product = $usercontroller->getProdCart($value);
+            $size = $product[0][3];
+            $quantity = $product[0][4];
             $prodId = $product[0][2];
             $result = $productcontroller->getSpecific($prodId);
-            echo json_encode($result);
-            
+            $stocks = $productcontroller->getStocks($prodId, $size);
+            $updated_stock = $stocks[$size] - $quantity;
+            $usercontroller->removeCart($product[0][0]);
+            $addprod = $ordercontroller->addProdOrders($orderId, $prodId, $quantity);
+            $productcontroller->updateStocks($prodId, $size, $updated_stock);
         }
+    }
 
-        // echo json_encode($prods);
+    public function fetchOrders(){
+        $controller = new OrderController();
+        $result = $controller->fetchOrders($_SESSION['user']['id']);
+        echo json_encode($result);
+    }
+
+    public function fetchOrderDetails(){
+        $controller = new OrderController();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $result = $controller->fetchOrderDetails($data['orderId']);
+        echo json_encode($result);
     }
 }
 
