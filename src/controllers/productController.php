@@ -46,5 +46,10 @@ class ProductController{
     public function removeProd($userId,$prodId){
         
     }
+
+    public function processCheckout(){
+        $prods = $_SESSION['products'];
+        return $prods;
+    }
 }
 ?>

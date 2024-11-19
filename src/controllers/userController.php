@@ -40,5 +40,10 @@ class UserController{
         $result = $this->user->removeToCart($cartId);
         return $result;
     }
+
+    public function getProdCart($cartId){
+        $result = $this->user->getProdCart($cartId);
+        return $result;
+    }
 }
 ?>

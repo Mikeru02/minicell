@@ -55,7 +55,7 @@
                             <i class="fa-solid fa-arrow-left"></i>
                             <p>Back to Main Page</p>
                         </a>
-                        <a id="proceed-checkout" href=''>
+                        <a id="proceed-checkout" href='/minicell/index.php/checkout'>
                             <p>Proceed Chechout</p>
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -95,7 +95,7 @@
                             console.log(data)
                             prodHTML += `
                                 <div class="prod">
-                                    <input type="checkbox" id="${data.id}" class="prod-checkbox">
+                                    <input type="checkbox" id="${product[0]}" class="prod-checkbox" name="selector">
                                     <img src="/minicell/${data.image}" class="prod-image" />
                                     <p class="prod-name"># ${data.name}</p>
                                     <input type="number" value="${product[4]}" class="prod-quantity" id="${product[0]}">
@@ -110,10 +110,41 @@
             container.innerHTML += prodHTML;
 
             const trashcans = document.querySelectorAll('.trashcan');
-            const qtys = document.querySelectorAll('.prod-quantity')
+            const qtys = document.querySelectorAll('.prod-quantity');
+            console.log(document.querySelector('input[name="selector"]:checked'))
             deleteProdCart(trashcans);
             modifyQty(qtys);
         }
+        const prod = []
+        container.addEventListener('change', function(event){
+            if (event.target.matches('input[name="selector"]')) {
+                const id = event.target.id;
+                if (event.target.checked) {
+                    if (!prod.includes(id)) {
+                        prod.push(id);
+                    }
+                } else {
+                    const index = prod.indexOf(id);
+                    if (index !== -1) {
+                        prod.splice(index, 1);
+                    }
+                }
+                console.log(prod);
+                fetch('/minicell/index.php/progress',{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        products: prod
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                    })
+            }
+        })
 
         async function deleteProdCart(btns){
             btns.forEach(deletebtn => {

@@ -166,5 +166,18 @@ class User{
             $database->close();
         }
     }
+
+    public function getProdCart($cartId){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "SELECT * FROM cart WHERE id='$cartId'";
+            $result = mysqli_query($conn, $query);
+            $product = mysqli_fetch_all($result);
+            return $product;
+        }finally{
+            $database->close();
+        }
+    }
 }
 ?>

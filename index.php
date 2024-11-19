@@ -26,6 +26,10 @@ else if($_SERVER['REQUEST_URI'] == '/minicell/index.php/cart'){
     $controller = new CartController();
     $controller->index();
 }
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/getcart'){
+    $controller = new CartController();
+    $controller->getCart();
+}
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/removetocart'){
     $controller = new CartController();
     $controller->deleteProduct();
@@ -94,6 +98,31 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/addtocart') {
         $controller->addtocart();
     } 
 }
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/checkout'){
+    if ($_SESSION['user_logged_in'] === true){
+        $controller = new CheckOutController();
+        $controller->index();
+    } 
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/payment'){
+    if ($_SESSION['user_logged_in'] === true){
+        $controller = new CheckOutController();
+        $controller->payment();
+    } 
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/processcheckout'){
+    if ($_SESSION['user_logged_in'] === true){
+        $controller = new CheckOutController();
+        $controller->processCheckout();
+    } 
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/progress'){
+    if ($_SESSION['user_logged_in'] === true){
+        $controller = new CheckOutController();
+        $controller->setProds();
+    } 
+}
+
 else{
     $controller = new NotFoundController();
     $controller->index();

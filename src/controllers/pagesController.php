@@ -1,6 +1,7 @@
 <?php
 require_once 'src/controllers/productController.php';
 require_once 'src/controllers/userController.php';
+require_once 'src/controllers/ordersController.php';
 require_once 'src/models/user.php';
 require_once 'src/models/product.php';
 
@@ -225,6 +226,15 @@ class CartController{
         require_once 'src/views/cart/cart.php';
     }
 
+    public function getCart(){
+        $controller = new UserController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = json_decode(file_get_contents('php://input'), true);
+            $result = $controller->getProdCart($data['cartId']);
+            echo json_encode($result);
+        }
+    }
+
     public function fetchProducts(){
         $controller = new ProductController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -250,6 +260,43 @@ class CartController{
             $result = $controller->updateCart($data['cartId'], $data['quantity']);
             echo json_encode($result);
         }
+    }
+}
+
+class CheckOutController{
+    public function index(){
+        require_once 'src/views/checkout/checkout.php';
+    }
+
+    public function setProds(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = json_decode(file_get_contents('php://input'), true);
+            $_SESSION['products'] = $data['products'];
+        }
+    }
+
+    public function payment(){
+        require_once 'src/views/checkout/payment.php';
+    }
+
+    public function processCheckout(){
+        $ordercontroller = new OrderController();
+        $usercontroller = new UserController();
+        $productcontroller = new ProductController();
+        $userId = $_SESSION['user']['id'];
+        $productInCart = $_SESSION['products'];
+        $data = json_decode(file_get_contents('php://input'), true);
+        echo print_r($data);
+
+        foreach ($productInCart as $value){
+            $product = $usercontroller->getProdCart($value);
+            $prodId = $product[0][2];
+            $result = $productcontroller->getSpecific($prodId);
+            echo json_encode($result);
+            
+        }
+
+        // echo json_encode($prods);
     }
 }
 
