@@ -17,14 +17,14 @@ class AdminLoginController{
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $mobile_num = $_POST['mobile_num'];
             $password = $_POST['password'];
-            $result = $this->user->get($mobile_num, $password);
+            $result = $this->user->getAdmin($mobile_num, $password);
 
             if ($result) {
                 $_SESSION['admin_logged_in'] = true;
                 header('Location: /minicell/index.php/adminpage');
                 exit(); 
             } else {
-                echo "Failed to register user.";
+                require_once 'src/views/loginfailed/loginfailed.php';
             }
         } else {
             require_once 'src/views/adminpage/adminlogin.php';
@@ -207,8 +207,10 @@ class HomePageController{
             $checkCart = $controller->checkCart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
             if ($checkCart){
                 $result = $controller->updateCart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
+                echo json_encode($result);
             }else{
                 $result = $controller->addtocart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
+                echo json_encode($result);
             }
         }
     }
@@ -233,10 +235,19 @@ class CartController{
     }
 
     public function deleteProduct(){
-        $controller = new ProductController();
+        $controller = new UserController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = json_decode(file_get_contents('php://input'), true);
-            $result = $controller->getSpecific($data['prodId']);
+            $result = $controller->removeCart($data['cartId']);
+            echo json_encode($result);
+        }
+    }
+
+    public function updateCart(){
+        $controller = new UserController();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $data = json_decode(file_get_contents('php://input'), true);
+            $result = $controller->updateCart($data['cartId'], $data['quantity']);
             echo json_encode($result);
         }
     }

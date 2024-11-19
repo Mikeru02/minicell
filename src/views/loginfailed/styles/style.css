@@ -43,11 +43,13 @@ svg{
 .title{
     font-size: 4rem;
     font-family: "Dela Gothic One", sans-serif;
+    color: white;
 }
 
 .desc{
     font-size: 2rem;
     font-family: "Spinnaker", sans-serif;
+    color: white;
 }
 
 .redirect-btn{

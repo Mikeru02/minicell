@@ -56,7 +56,7 @@
                 </section>
             </main>
             <footer>
-
+                
             </footer>
         </div>
     </body>
@@ -129,7 +129,7 @@
             addToCart.addEventListener('click', function(){
                 const selectedSize = document.querySelector('input[name="selector"]:checked');
                 const size = selectedSize.value;
-                console.log(size)
+                // TODO: Add condition in this to check if size is checked
                 fetch(`/minicell/index.php/addtocart`,{
                     method: 'POST',
                     headers: {

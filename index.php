@@ -26,6 +26,14 @@ else if($_SERVER['REQUEST_URI'] == '/minicell/index.php/cart'){
     $controller = new CartController();
     $controller->index();
 }
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/removetocart'){
+    $controller = new CartController();
+    $controller->deleteProduct();
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/updatecart'){
+    $controller = new CartController();
+    $controller->updateCart();
+}
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/signUp'){
     $controller = new SignUpController();
     $controller->index();

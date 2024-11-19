@@ -90,7 +90,13 @@
                 </section>
             </main>
             <footer>
-
+                <p class='title'>Used for educational purposes only</p>
+                <p>All of the materials here a free to use</p>
+                <p>Creadits to the real owners</p>
+                <p>For more information,kindly reach out the contributors</p>
+                <p>Developed with ❤️ by mikerusensei</p>
+                <p>Design with ❤️ by raecellann</p>
+                <p>Tested with ❤️ by nickyshane</p>
             </footer>
         </div>
     </body>
@@ -101,9 +107,8 @@
 
         document.addEventListener('DOMContentLoaded', function(){
             let prods = <?php echo json_encode($products); ?>;
-            console.log(prods)
             let prod = <?php echo json_encode($result);?>;
-            console.log(prod)
+            let user = <?php echo json_encode($_SESSION['user']);?>;
             let result;
             const urlParams = new URLSearchParams(window.location.search);
             const category = urlParams.get('category');
@@ -118,7 +123,9 @@
             
             updateDisplayArea(result);
             const products = document.querySelectorAll('.product-container');
+            // const addtocarts = document.querySelectorAll('.addtocart');
             manipulateProducts(products);
+            // addtocart(addtocarts);
 
         });
 
@@ -149,6 +156,7 @@
 
                     const addcart = document.createElement('button');
                     addcart.setAttribute('class', 'addtocart');
+                    addcart.setAttribute('id', product.id);
                     addcart.innerHTML = 'Add to Cart';
 
                     productContainer.appendChild(image);
@@ -216,6 +224,30 @@
                 })
             })
         }
+
+        // function addtocart(btns){
+        //     btns.forEach(addtocartbtn => {
+        //         addtocartbtn.addEventListener('click', function(){
+        //             const prodId = addtocartbtn.id;
+        //             fetch(`/minicell/index.php/addtocart`,{
+        //                 method: 'POST',
+        //                 headers: {
+        //                     'content-type': 'application/json'
+        //                 },
+        //                 body:JSON.stringify({
+        //                     prodId: prodId,
+        //                     userId: user.id,
+        //                     size: "small",
+        //                     quantity: 1
+        //                 })
+        //             })
+        //                 .then(res => res.json())
+        //                 .then(data => {
+        //                     console.log(data)
+        //                 })
+        //             })
+        //     })
+        // }
 
     </script>
 </html>

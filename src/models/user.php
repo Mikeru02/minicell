@@ -70,6 +70,26 @@ class User{
         }
     }
 
+    public function getAdmin($email_add, $password){
+        $database = new Database();
+        $conn = $database->connect();
+
+        $query = "SELECT * FROM users WHERE email_address='$email_add'";
+        $result = mysqli_query($conn, $query);
+
+        $user = mysqli_fetch_assoc($result);
+
+        $hassed_password = hash('sha256', $password);
+
+        if ($user){
+            if ($hassed_password == $user['password'] && $user['role'] == 'admin'){
+                return $user;
+            }
+        } else{
+            return null;
+        }
+    }
+
     public function update($userId, $username, $name, $phone_num, $birtdate){
         $database = new Database();
         $conn = $database->connect();
@@ -123,11 +143,11 @@ class User{
         }
     }
 
-    public function updateCart($userId, $prodId, $size,$quantity){
+    public function updateCart($cartId, $quantity){
         $database = new Database();
         $conn = $database->connect();
         try{
-            $query = "UPDATE cart SET quantity='$quantity' WHERE productId='$prodId' AND userId='$userId' AND size='$size'";
+            $query = "UPDATE cart SET quantity='$quantity' WHERE id='$cartId'";
             $result = mysqli_query($conn, $query);
             return $result;
         }finally{
@@ -135,6 +155,16 @@ class User{
         }
     }
 
-    public function removeProd($userId, $prodId)
+    public function removeToCart($cartId){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "DELETE FROM cart WHERE id='$cartId'";
+            $result = mysqli_query($conn, $query);
+            return $result;
+        }finally{
+            $database->close();
+        }
+    }
 }
 ?>

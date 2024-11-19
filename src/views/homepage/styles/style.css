@@ -37,6 +37,18 @@ body{
     font-weight: bold;
 }
 
+footer{
+    border-top: solid 1px black;
+    text-align: center;
+    font-family: 'Spinnaker';
+    font-size: 1rem;
+}
+
+.title{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 #product-display-area{
     /* min-height: 900px; */
     display: flex;

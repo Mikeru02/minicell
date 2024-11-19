@@ -31,8 +31,13 @@ class UserController{
         return $result;
     }
 
-    public function updateCart($userId, $prodId, $size,$quantity){
-        $result = $this->user->updateCart($userId, $prodId, $size,$quantity);
+    public function updateCart($cartId, $quantity){
+        $result = $this->user->updateCart($cartId, $quantity);
+        return $result;
+    }
+
+    public function removeCart($cartId){
+        $result = $this->user->removeToCart($cartId);
         return $result;
     }
 }
