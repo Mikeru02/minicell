@@ -45,5 +45,10 @@ class UserController{
         $result = $this->user->getProdCart($cartId);
         return $result;
     }
+
+    public function postReview($userId, $rating, $orderId, $content){
+        $result = $this->user->postReview($userId, $rating, $orderId, $content);
+        return $result;
+    }
 }
 ?>

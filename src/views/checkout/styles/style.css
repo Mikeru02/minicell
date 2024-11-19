@@ -218,3 +218,8 @@ label{
     width: 70rem;
     text-align: center;
 }
+
+.prod-qty{
+    font-family: 'Spinnaker';
+    font-size: 2rem;
+}

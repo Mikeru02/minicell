@@ -24,6 +24,23 @@
                 <p>Changes save!</p>
                 <button id="submit-notif">Okay</button>
             </div>
+            <div id="review">
+                <h1 class="review-title">How was your experience?</h1>
+                <span class="star-rating">
+                <label for="rate-1" style="--i:1"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="rate-1" value="1">
+                <label for="rate-2" style="--i:2"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="rate-2" value="2" checked>
+                <label for="rate-3" style="--i:3"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="rate-3" value="3">
+                <label for="rate-4" style="--i:4"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="rate-4" value="4">
+                <label for="rate-5" style="--i:5"><i class="fa-solid fa-star"></i></label>
+                <input type="radio" name="rating" id="rate-5" value="5">
+                </span>
+                <input type="text" id="user-review" placeholder="Describe your thoughts">
+                <button id="reviewbtn">Post Review</button>
+            </div>
             <dv class="content">
                 <header>
                     <a href="/minicell/index.php/homepage">
@@ -102,6 +119,20 @@
         const myAccount = document.querySelector('#my-account');
         const editArea = document.querySelector('#edit-area');
         const header = document.querySelector('#changing-header');
+        const reviewpanel = document.querySelector('#review');
+        const postReviewBTN = document.querySelector('#reviewbtn')
+        const span = document.querySelector('.star-rating');
+        const ratingRadios = span.querySelectorAll('input[name="rating"]');
+
+        function getSelectedRating() {
+            let selectedRating = null;
+            ratingRadios.forEach(function (radio) {
+                if (radio.checked) {
+                    selectedRating = radio.value; 
+                }
+            });
+            return selectedRating;
+        }
 
         save.addEventListener('click', function(event){
             event.preventDefault();
@@ -165,13 +196,53 @@
                         orderContainer.classList.add('order-container');
                         orderContainer.id = `order-${data.id}`;
                         orderContainer.innerHTML = `
-                            <p>Order ID: ${data.id}</p>
+                            <p id="order-id">Order ID: ${data.id}</p>
                             <div class="order-products"></div>
                         `;
                         editArea.appendChild(orderContainer);
                     }
 
                     const orderProducts = orderContainer.querySelector('.order-products');
+
+                    const p =document.createElement('p');
+                    p.setAttribute('id', 'status');
+                    p.innerHTML = `Status: ${data.status}`;
+
+                    const reviewbtn = document.createElement('button');
+                    reviewbtn.setAttribute('id', 'toggle-review');
+                    reviewbtn.innerHTML = "Review"
+
+                    orderContainer.appendChild(p);
+                    if (data.status === 'delivered'){
+                        orderContainer.appendChild(reviewbtn);
+
+                        reviewbtn.addEventListener('click', async function(){
+                            reviewpanel.style.display = 'flex';
+                            postReviewBTN.addEventListener('click', async function(){
+                                window.alert('HIT')
+                                const rating = getSelectedRating();
+                                window.alert(rating)
+                                const userReview = document.querySelector('#user-review').value;
+                                window.alert(userReview)
+                                const resp = await fetch('/minicell/index.php/review',{
+                                    method: 'POST',
+                                headers: {
+                                    'content-type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    rating: rating,
+                                    orderId: data.id,
+                                    content: userReview
+                                    })
+                                })
+
+                                // const respdata = await resp.json();
+                                // console.log(respdata);
+
+                                reviewpanel.style.display = 'none';
+                            })
+                        })
+                    }
 
                     const orderDetailsResponse = await fetch('/minicell/index.php/orderdetails', {
                         method: 'POST',
@@ -205,18 +276,23 @@
                             <div class="product-details">
                                 <h3>${productData.name}</h3>
                                 <p class="prod-desc">${productData.description}</p>
-                                <p><strong>Price:</strong>${productData.price}</p>
-                                <p>${data.status}</p>
+                                <div id="prod-qty">
+                                    <p><strong>Price:</strong>${productData.price}</p>
+                                    <p><strong>Qty:</strong>${orderDetails.quantity}</p>
+                                    <p><strong>${orderDetails.size}</strong>
+                                </div>
                             </div>
                         `;
 
                         orderProducts.appendChild(productCard);
                     }
                 }
-            } catch (error) {
+            }catch (error) {
                 console.error('Error fetching data:', error);
                 editArea.innerHTML = '<p>Failed to load purchases. Please try again later.</p>';
             }
+
+
         });
 
     </script>

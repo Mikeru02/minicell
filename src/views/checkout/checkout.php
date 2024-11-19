@@ -75,7 +75,7 @@
                             <p id="subtotal"></p>
                         </div>
                         <div class="backBtns">
-                        <a href='/minicell/index.php/homepage'>
+                        <a id="backhome">
                             <i class="fa-solid fa-arrow-left"></i>
                             <p>Back to Main Page</p>
                         </a>
@@ -94,9 +94,33 @@
     </body>
     <script>
         let products = <?php echo json_encode($_SESSION['products']); ?>;
+        const backhome = document.querySelector('#backhome');
         let container = document.querySelector('.main-area');
         let subtotalArea = document.querySelector('#subtotal');
         let prodHTML= '';
+
+        backhome.addEventListener('click', async function(){
+            for (const product of products){
+                const res = await fetch('/minicell/index.php/removetocart',{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        cartId: product
+                    })
+                })
+            }
+
+            const reset = await fetch('/minicell/index.php/resetsession');
+
+            const test = await fetch('/minicell/index.php/test');
+
+            const data = await test.json();
+            console.log("DEBUG", data)
+
+            window.location.href = '/minicell/index.php/homepage';
+        })
 
         async function displayProds(products) {
             let subtotal = 0;
@@ -112,8 +136,9 @@
                     })
                 });
                 const cartData = await cartResponse.json();
+                console.log(cartData)
                 const prodId = cartData[0][2];
-                console.log(cartData[0][4])
+                console.log("DEBUG:", cartData[0][4])
 
                 const productResponse = await fetch('/minicell/index.php/products', {
                     method: 'POST',
@@ -138,6 +163,7 @@
                         <img src="/minicell/${productData.image}" class="prod-image" />
                         <p class="prod-name"># ${productData.name}</p>
                         <p class="prod-size">${cartData[0][3]}</p>
+                        <p class="prod-qty">x${cartData[0][4]}</p>
                         <p class="prod-price">₱${productData.price}.00</p>
                     </div>
                 `;

@@ -138,7 +138,9 @@ class User{
         try{
             $query = "INSERT INTO cart (userId, productId, size, quantity, datetime) VALUES ('$userId','$prodId', '$size', '$quantity',NOW())";
             $result = mysqli_query($conn, $query);
-            return $result;
+            $cartId = mysqli_insert_id($conn);
+
+            return $cartId;
         }finally{
             $database->close();
         }
@@ -176,6 +178,18 @@ class User{
             $result = mysqli_query($conn, $query);
             $product = mysqli_fetch_all($result);
             return $product;
+        }finally{
+            $database->close();
+        }
+    }
+
+    public function postReview($userId, $rating, $orderId, $content){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "INSERT INTO reviews (userId, rating, orderId, content, datetime) VALUES ('$userId', '$rating', '$orderId', '$content', NOW())";
+            $result = mysqli_query($conn, $query);
+            return $result;
         }finally{
             $database->close();
         }

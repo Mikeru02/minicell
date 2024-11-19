@@ -61,5 +61,10 @@ class ProductController{
         $result = $this->product->updateStocks($productId, $size, $quantity);
         return $result;
     }
+
+    public function getAllOrders(){
+        $result = $this->product->getAllOrders();
+        return $result;
+    }
 }
 ?>

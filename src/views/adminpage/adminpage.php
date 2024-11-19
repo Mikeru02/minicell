@@ -110,17 +110,111 @@
     const createBtn = document.querySelector('#create-btn');
     const createForm = document.querySelector('#create-product-form');
     const ordersBTN = document.querySelector('#orders');
-    const contentArea = document.querySelector('#content-area');
+    const editArea = document.querySelector('#content-area');
 
 
-    ordersBTN.addEventListener('click', function(){
-        contentArea.innerHTML ='';
+    ordersBTN.addEventListener('click', async function(){
+        editArea.innerHTML ='';
+
+        const orderFetch = await fetch('/minicell/index.php/allorders');
+        const orderData = await orderFetch.json();
+        
+        for (const data of orderData) {
+            let orderContainer = document.getElementById(`order-${data.id}`);
+            if (!orderContainer) {
+                orderContainer = document.createElement('div');
+                orderContainer.classList.add('order-container');
+                orderContainer.id = `order-${data.id}`;
+                orderContainer.innerHTML = `
+                    <p>Order ID: ${data.id}</p>
+                    <div class="order-products"></div>
+                `;
+                editArea.appendChild(orderContainer);
+            }
+
+            const orderProducts = orderContainer.querySelector('.order-products');
+
+            const statusOptions = ['order placed', 'preparing', 'shipped', 'delivered'];
+            const statusSelect = document.createElement('select');
+            statusSelect.classList.add('status-select');
+            statusOptions.forEach((status) => {
+                const option = document.createElement('option');
+                option.value = status;
+                option.textContent = status;
+                if (status === data.status) {
+                    option.selected = true; // Set the default value
+                }
+                statusSelect.appendChild(option);
+            });
+
+            orderContainer.appendChild(statusSelect);
+
+            statusSelect.addEventListener('change', async function(){
+                const status = this.value;
+                console.log(data.id)
+
+                const response = await fetch('/minicell/index.php/updateorderstatus',{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        orderId: data.id,
+                        status: status
+                    })
+                })
+
+                const data1 = await response.json();
+            })
+
+            const orderDetailsResponse = await fetch('/minicell/index.php/orderdetails', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderId: data.id,
+                }),
+            });
+            const orderDetailsData = await orderDetailsResponse.json();
+
+            for (const orderDetails of orderDetailsData) {
+                const productResponse = await fetch('/minicell/index.php/products', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        prodId: orderDetails.productId,
+                    }),
+                });
+
+                const productData = await productResponse.json();
+
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
+
+                productCard.innerHTML = `
+                    <img src="/minicell/${productData.image}" alt="${productData.name}" class="product-image" />
+                    <div class="product-details">
+                        <h3>${productData.name}</h3>
+                        <p class="prod-desc">${productData.description}</p>
+                        <p><strong>Price:</strong>${productData.price}</p>
+                    </div>
+                `;
+                
+                orderContainer.appendChild(statusSelect)
+                orderProducts.appendChild(productCard);
+            }
+        }
     })
+
     createBtn.addEventListener('click', function(){
         createForm.reset();
     })
+
     document.addEventListener('DOMContentLoaded', function() {
-        var result = <?php echo json_encode($result); ?>;
+        var result = <?php echo json_encode($this->result); ?>;
 
         const inputName = document.getElementById('name');
         const inputDesc = document.getElementById('desc');

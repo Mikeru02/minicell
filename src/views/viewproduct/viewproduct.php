@@ -156,6 +156,52 @@
                 notif.style.display = 'flex';
             })
 
+            const buy =document.querySelector('#buy');
+            buy.addEventListener('click', async function(){
+                console.log(buy.className)
+                const selectedSize = document.querySelector('input[name="selector"]:checked');
+                const size = selectedSize.value;
+
+
+                const sessionRes = await fetch('/minicell/index.php/addtocart',{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        prodId: buy.className,
+                        userId: user.id,
+                        size: size,
+                        quantity: 1
+                    })
+                })
+
+                const sessionData = await sessionRes.json();
+                console.log(sessionData);
+
+                let prod = [];
+                prod.push(sessionData.cartId)
+                const progress = await fetch('/minicell/index.php/progress',{
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        products: prod
+                    })
+                })
+
+                // const progressData = await progress.json();
+                // console.log(progressData);
+
+                const test = await fetch('/minicell/index.php/test')
+
+                const testdata = await test.json();
+                console.log(testdata);
+
+                window.location.href = '/minicell/index.php/checkout';
+            })
+
             submitNotif.addEventListener('click', function(){
                 notif.style.display = "none";
             })

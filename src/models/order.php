@@ -15,12 +15,12 @@ class Order{
         }
     }
 
-    public function addProdOrders($orderId, $productId, $quantity){
+    public function addProdOrders($orderId, $productId, $quantity, $size){
         $database = new Database();
         $conn = $database->connect();
 
         try{
-            $query = "INSERT INTO order_details (orderId, productId, quantity) VALUES ('$orderId', '$productId', '$quantity')";
+            $query = "INSERT INTO order_details (orderId, productId, quantity, size) VALUES ('$orderId', '$productId', '$quantity', '$size')";
             $result = mysqli_query($conn, $query);
             return $result;
         } finally{
@@ -51,6 +51,19 @@ class Order{
             $result = mysqli_query($conn, $query);
             $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             return$row;
+        } finally{
+            $database->close();
+        }
+    }
+
+    public function updateOrderStatus($orderId, $status){
+        $database = new Database();
+        $conn = $database->connect();
+
+        try{
+            $query = "UPDATE orders SET status='$status' WHERE id='$orderId'";
+            $result = mysqli_query($conn, $query);
+            return $result;
         } finally{
             $database->close();
         }

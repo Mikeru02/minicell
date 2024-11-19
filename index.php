@@ -60,6 +60,15 @@ else if (preg_match('/^\/minicell\/index\.php\/adminpage/', $_SERVER['REQUEST_UR
         $controller->index();
     }
 }
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/allorders'){
+    $controller = new AdminPageController();
+    $controller->getAllOrders();
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/updateorderstatus'){
+    $controller = new AdminPageController();
+    $controller->updateOrderStatus();
+}
+
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/logout') {
     if ($_SESSION['admin_logged_in'] === true){
         $controller = new AdminPageController();
@@ -124,6 +133,12 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/checkoutsuccess'){
         $controller->checkoutSuccess();
     } 
 }
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/buynow'){
+    if ($_SESSION['user_logged_in'] === true){
+        $controller = new CheckOutController();
+        $controller->buyNow();
+    } 
+}
 
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/progress'){
     if ($_SESSION['user_logged_in'] === true){
@@ -146,6 +161,21 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/orderdetails'){
         $controller = new CheckOutController();
         $controller->fetchOrderDetails();
     }
+}
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/resetsession'){
+    $controller = new HomePageController();
+    $controller->resetSessionProducts();
+}
+
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/review'){
+    $controller = new HomePageController();
+    $controller->postReview();
+}
+
+//TEs routes
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/test'){
+        $controller = new Test();
+        $controller->printSession();
 }
 
 else{

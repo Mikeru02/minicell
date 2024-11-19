@@ -17,8 +17,8 @@ class OrderController{
         return $result;
     }
 
-    public function addProdOrders($orderId, $productId, $quantity){
-        $result = $this->order->addProdOrders($orderId, $productId, $quantity);
+    public function addProdOrders($orderId, $productId, $quantity, $size){
+        $result = $this->order->addProdOrders($orderId, $productId, $quantity, $size);
         return $result;
     }
 
@@ -29,6 +29,11 @@ class OrderController{
 
     public function fetchOrderDetails($orderId){
         $result = $this->order->fetchOrderDetails($orderId);
+        return $result;
+    }
+
+    public function updateOrderStatus($orderId, $status){
+        $result = $this->order->updateOrderStatus($orderId, $status);
         return $result;
     }
 }

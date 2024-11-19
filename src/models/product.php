@@ -216,5 +216,19 @@ class Product{
             $database->close();
         }
     }
+
+    public function getAllOrders(){
+        $database = new Database();
+        $conn = $database->connect();
+
+        try{
+            $query = "SELECT * FROM orders";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            return $row;
+        }finally{
+            $database->close();
+        }
+    }
 }
 ?>

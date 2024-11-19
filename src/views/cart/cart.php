@@ -129,7 +129,7 @@
                         prod.splice(index, 1);
                     }
                 }
-                console.log(prod);
+                console.log("DEBUG:", prod);
                 fetch('/minicell/index.php/progress',{
                     method: 'POST',
                     headers: {

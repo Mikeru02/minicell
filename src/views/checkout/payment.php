@@ -120,7 +120,7 @@
                                 <p>Back to Main Page</p>
                             </a>
                             <a id="proceed-checkout">
-                                <p>Proceed Chechout</p>
+                                <p>Proceed Checkout</p>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
@@ -176,13 +176,17 @@
                 const productData = await productResponse.json();
 
                 const prodPrice = parseInt(productData.price);
-                subtotal += prodPrice;
+                const qty = parseInt(cartData[0][4])
+                let gross = prodPrice * qty;
+                console.log(qty);
+                subtotal += gross;
 
                 container.innerHTML += `
                     <div class="products">
                         <img src="/minicell/${productData.image}" class="prod-image" />
                         <p class="prod-name"># ${productData.name}</p>
                         <p class="prod-size">${cartData[0][3]}</p>
+                        <p class="prod-qty">x${cartData[0][4]}</p>
                         <p class="prod-price">₱${productData.price}.00</p>
                     </div>
                 `;
@@ -195,7 +199,6 @@
 
         proceed.addEventListener('click', async function(){
             const emailval = email.value; 
-            console.log(emailval)
             const paymentval = payment.value; 
             const houseval = house.value; 
             const streetval = street.value; 

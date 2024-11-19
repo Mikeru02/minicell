@@ -10,7 +10,7 @@ html{
 
 .responsive-container{
     width: 1440px;
-    height: 1024px;
+    height: fit-content;
     margin: auto;
     background-color: rgba(255, 255, 255, 1);
     border: 1px solid #FFFFFF;
@@ -40,7 +40,7 @@ main{
 
 nav{
     width: 30rem;
-    height: 871px;
+    min-height: 871px;
     background-color: rgba(8, 44, 75, 0.7);
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@ ul{
     flex-direction: column;
     align-items: flex-end;
     width: inherit;
-    height: 40rem;
+    height: 60rem;
     justify-content: space-around;
 }
 
@@ -262,4 +262,23 @@ input{
 #texts{
     display: flex;
     flex-direction: column;
+}
+
+.product-image{
+    width: 10rem;
+    height: 10rem;
+}
+
+.product-card{
+    display: flex;
+}
+
+.order-container{
+    margin: 1rem;
+    border-bottom: solid black;
+    color: black;
+}
+
+.prod-desc{
+    width: 70rem;
 }

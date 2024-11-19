@@ -35,12 +35,15 @@ class AdminLoginController{
 
 // Admin Page
 class AdminPageController{
+    private $result = null;
+
     public function index() {
         $controller = new ProductController();
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['search'])) {
             $searchTerm = $_GET['search'];
-            $result = $controller->getProd($searchTerm);
+            $this->result = $controller->getProd($searchTerm);
+            json_encode($this->result);
         }
         elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
             if (isset($_POST['method']) && $_POST['method'] === 'DELETE'){
@@ -102,6 +105,19 @@ class AdminPageController{
         session_destroy();
         header('Location: /minicell/index.php');
         exit();
+    }
+
+    public function getAllOrders(){
+        $controller = new ProductController();
+        $result = $controller->getAllOrders();
+        echo json_encode($result);
+    }
+
+    public function updateOrderStatus(){
+        $controller = new OrderController();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $result = $controller->updateOrderStatus($data['orderId'], $data['status']);
+        echo json_encode($result);
     }
 }
 
@@ -209,12 +225,23 @@ class HomePageController{
             $checkCart = $controller->checkCart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
             if ($checkCart){
                 $result = $controller->updateCart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
-                echo json_encode($result);
+                echo json_encode(['cartId' => $result]);
             }else{
                 $result = $controller->addtocart($data['userId'], $data['prodId'], $data['size'], $data['quantity']);
-                echo json_encode($result);
+                echo json_encode(['cartId' => $result]);
             }
         }
+    }
+
+    public function resetSessionProducts(){
+        $_SESSION['products'] = null;
+    }
+
+    public function postReview(){
+        $controller = new UserController();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $result = $controller->postReview($_SESSION['user']['id'], $data['rating'], $data['orderId'], $data['content']);
+        echo json_encode(['data' => json_encode($data)]);
     }
 }
 
@@ -273,6 +300,17 @@ class CheckOutController{
         require_once 'src/views/checkout/checkoutsuccess.php';
     }
 
+    public function buyNow(){
+        $controller =new USerController();
+        $products = $controller->getCart($_SESSION['user']['id']);
+        echo json_encode($products);
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+        //     $data = json_decode(file_get_contents('php://input'), true);
+        //     $_SESSION['buyNow-prod'] = $data;
+        //     echo json_encode($_SESSION['products']);
+        // }
+    }
+
     public function setProds(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $data = json_decode(file_get_contents('php://input'), true);
@@ -310,7 +348,7 @@ class CheckOutController{
             $stocks = $productcontroller->getStocks($prodId, $size);
             $updated_stock = $stocks[$size] - $quantity;
             $usercontroller->removeCart($product[0][0]);
-            $addprod = $ordercontroller->addProdOrders($orderId, $prodId, $quantity);
+            $addprod = $ordercontroller->addProdOrders($orderId, $prodId, $quantity, $size);
             $productcontroller->updateStocks($prodId, $size, $updated_stock);
         }
     }
@@ -329,6 +367,11 @@ class CheckOutController{
     }
 }
 
+class Test{
+    public function printSession(){
+        echo json_encode($_SESSION['products']);
+    }
+}
 // Not Found Page
 class NotFoundController{
     public function index(){
