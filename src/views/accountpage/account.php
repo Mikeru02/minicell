@@ -191,8 +191,12 @@
                     })
             });
             addressPanel.style.display = 'none';
+            window.location.href = '/minicell/index.php/account';
 
+        })
 
+        cancelAdd.addEventListener('click', function(){
+            addressPanel.style.display = 'none';
         })
         function getSelectedRating() {
             let selectedRating = null;
