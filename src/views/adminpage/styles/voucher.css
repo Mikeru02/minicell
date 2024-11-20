@@ -1,0 +1,42 @@
+#create-voucher{
+    display: flex;
+    flex-direction: column;
+}
+.voucher{
+    border: solid 1rem #335970;
+    display: flex;
+    width: inherit;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 5rem;
+    margin: 1rem;
+}
+
+.voucher svg{
+    width: 10rem;
+    height: 10rem;
+    margin-right: 1rem;
+}
+
+#create-voucher-div{
+    display: flex;
+    flex-direction: column;
+}
+
+#left-side{
+    width: 55rem;
+    padding: 5rem;
+}
+
+#right-side{
+    width: 40rem;
+}
+
+.texts p{
+    margin: 1.5rem;
+}
+
+.texts .title{
+    font-size: 2rem;
+    font-family: 'Dela Gothic One';
+}

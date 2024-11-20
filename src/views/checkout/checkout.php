@@ -75,7 +75,7 @@
                             <p id="subtotal"></p>
                         </div>
                         <div class="backBtns">
-                        <a id="backhome">
+                        <a id="backhome" href='/minicell/index.php/homepage'>
                             <i class="fa-solid fa-arrow-left"></i>
                             <p>Back to Main Page</p>
                         </a>
@@ -99,28 +99,28 @@
         let subtotalArea = document.querySelector('#subtotal');
         let prodHTML= '';
 
-        backhome.addEventListener('click', async function(){
-            for (const product of products){
-                const res = await fetch('/minicell/index.php/removetocart',{
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        cartId: product
-                    })
-                })
-            }
+        // backhome.addEventListener('click', async function(){
+        //     for (const product of products){
+        //         const res = await fetch('/minicell/index.php/removetocart',{
+        //             method: 'POST',
+        //             headers: {
+        //                 'content-type': 'application/json'
+        //             },
+        //             body: JSON.stringify({
+        //                 cartId: product
+        //             })
+        //         })
+        //     }
 
-            const reset = await fetch('/minicell/index.php/resetsession');
+        //     const reset = await fetch('/minicell/index.php/resetsession');
 
-            const test = await fetch('/minicell/index.php/test');
+        //     const test = await fetch('/minicell/index.php/test');
 
-            const data = await test.json();
-            console.log("DEBUG", data)
+        //     const data = await test.json();
+        //     console.log("DEBUG", data)
 
-            window.location.href = '/minicell/index.php/homepage';
-        })
+        //     window.location.href = '/minicell/index.php/homepage';
+        // })
 
         async function displayProds(products) {
             let subtotal = 0;

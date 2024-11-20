@@ -194,5 +194,43 @@ class User{
             $database->close();
         }
     }
+
+    public function addAddress($userId, $fullname, $phonenum, $houseNum, $streetName, $brgy, $city, $prov, $zip){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "INSERT INTO users_address (userId, fullname, phone_number, house_number, street_name, barangay, municipality, province, zip_code) VALUES ('$userId', '$fullname', '$phonenum','$houseNum', '$streetName', '$brgy', '$city', '$prov', '$zip')";
+            $result = mysqli_query($conn, $query);
+            return $result;
+        }finally{
+            $database->close();
+        }
+    }
+
+    public function getAddress($userId){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "SELECT * FROM users_address WHERE userId='$userId'";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+            return $row;
+        }finally{
+            $database->close();
+        }
+    }
+
+    public function removeAddress($id){
+        $database = new Database();
+        $conn = $database->connect();
+        try{
+            $query = "DELETE FROM users_address WHERE id='$id'";
+            $result = mysqli_query($conn, $query);
+            return $result;
+        }finally{
+            $database->close();
+        }
+    }
 }
 ?>

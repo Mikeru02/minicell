@@ -75,6 +75,14 @@
                                 <p>Subtotal</p>
                                 <p id="subtotal"></p>
                             </div>
+                            <div class="shipping">
+                                <p>Shipping Fee</p>
+                                <p class="shipfee">₱50.00</p>
+                            </div>
+                            <div class="total">
+                                <p>Total</p>
+                                <p id="total"></p>
+                            </div>
                         </div>
                         <div class="right-side">
                             <div>
@@ -136,6 +144,7 @@
         let products = <?php echo json_encode($_SESSION['products']); ?>;
         let container = document.querySelector('.main-area');
         let subtotalArea = document.querySelector('#subtotal');
+        let totalArea = document.querySelector('#total');
         const proceed = document.querySelector('#proceed-checkout');
         const email = document.querySelector('#email');
         const payment = document.querySelector('#payment');
@@ -145,11 +154,13 @@
         const city = document.querySelector('#city');
         const prov = document.querySelector('#prov');
         const subtotal = document.querySelector('#subtotal');
+        const total = document.querySelector('#total')
 
         let prodHTML= '';
 
         async function displayProds(products) {
             let subtotal = 0;
+            let total = 0;
 
             for (const product of products) {
                 const cartResponse = await fetch('/minicell/index.php/getcart', {
@@ -178,8 +189,8 @@
                 const prodPrice = parseInt(productData.price);
                 const qty = parseInt(cartData[0][4])
                 let gross = prodPrice * qty;
-                console.log(qty);
                 subtotal += gross;
+                
 
                 container.innerHTML += `
                     <div class="products">
@@ -191,13 +202,17 @@
                     </div>
                 `;
             }
+
+            total += subtotal + 50;
             subtotalArea.innerHTML = `₱ ${subtotal}.00`;
+            totalArea.innerHTML = `₱ ${total}.00`;
             
         }
 
         displayProds(products);
 
         proceed.addEventListener('click', async function(){
+            console.log(total.innerHTML)
             const emailval = email.value; 
             const paymentval = payment.value; 
             const houseval = house.value; 
@@ -216,7 +231,7 @@
                     email: emailval,
                     paymentOption: paymentval,
                     shippingAddress: fulladd,
-                    subtotal: subtotal.innerHTML
+                    subtotal: total.innerHTML
                 })
             })
 

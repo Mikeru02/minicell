@@ -14,6 +14,7 @@
 
     <!-- Stylesheets --> 
     <link rel="stylesheet" href="../src/views/adminpage/styles/adminpage.css" />
+    <link rel="stylesheet" href="../src/views/adminpage/styles/voucher.css" />
     
     <!-- Scripts -->
     <script src="../src/views/adminpage/js/adminpage.js" defer></script>
@@ -109,11 +110,82 @@
 <script>
     const createBtn = document.querySelector('#create-btn');
     const createForm = document.querySelector('#create-product-form');
+    const manageBTN = document.querySelector('#manage-products');
     const ordersBTN = document.querySelector('#orders');
+    const vouchersBTN = document.querySelector('#vouchers');
     const editArea = document.querySelector('#content-area');
 
+    manageBTN.addEventListener('click', async function(){
+        editArea.style.flexDirection = 'column';
+        editArea.innerHTML = '';
+        editArea.innerHTML = `
+            <div class='header-div'>
+                    <form action='/minicell/index.php/adminpage' method='GET' id='search-form'>
+                        <div class='search-bar'>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type='text' placeholder='Search' name='search' id='search' required>
+                        </div>
+                        <button type='submit' id='search-btn'>Search</button>
+                    </form>
+                    <button id='create-btn'>Create</button>
+                    <form action="/minicell/index.php/adminpage" method='POST'>
+                            <input type="hidden" name="method" value="DELETE">
+                            <input type="hidden" name="product_id" value="">
+                            <button id='Submit'>Delete</button>
+                    </form>
+                </div>
+                <div id='display-area'>
+                    <h3>Product Information</h3>
+                    <form id='create-product-form' action='/minicell/index.php/adminpage' method='POST' enctype='multipart/form-data'>
+                        <div id="images">
+                            <label for="img">Main</label>
+                            <input type="file" accept="image/*" id="img" name="img" required>
+                            <label for="img">Support</label>
+                            <input type="file" accept="image/*" id="img1" name="img1" >
+                            <label for="img2">Support</label>
+                            <input type="file" accept="image/*" id="img3" name="img2" >
+                            <label for="img3">Support</label>
+                            <input type="file" accept="image/*" id="img3" name="img3" >
+                        </div>
+                        <div id="texts">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+
+                            <label for="desc">Description</label>
+                            <input type="text" id="desc" name="desc" required>
+
+                            <label for="price">Price</label>
+                            <input type="text" id="price" name="price" required>
+                            
+                            <label for="category">Category</label>
+                            <input type="text" id="category" name="category" required>
+
+                            <label for="material">Material</label>
+                            <input type="text" id="material" name="material" required>
+
+                            <div id='sizes'>
+                                <label for="small">S:</label>
+                                <input type="number" id="size-small" name="small" required>
+
+                                <label for="medium">M:</label>
+                                <input type="number" id="size-medium" name="medium" required>
+
+                                <label for="large">L:</label>
+                                <input type="number" id="size-large" name="large" required>
+                            </div>
+                            
+                            <label for="status">Status</label>
+                            <input type="text" id="status" name="status" required>
+
+                        </div>
+                        <button id='Submit'>Submit</button>
+                    </form>
+                </div>
+        `;
+    })
 
     ordersBTN.addEventListener('click', async function(){
+        editArea.style.flexDirection = 'column';
         editArea.innerHTML ='';
 
         const orderFetch = await fetch('/minicell/index.php/allorders');
@@ -206,6 +278,88 @@
                 orderContainer.appendChild(statusSelect)
                 orderProducts.appendChild(productCard);
             }
+        }
+    })
+
+    vouchersBTN.addEventListener('click', async function(){
+        editArea.style.flexDirection = 'row';
+        editArea.innerHTML ='';
+
+        editArea.innerHTML = `
+            <div id="left-side">
+                <div id="create-voucher-div">
+                    <h1># Create vouchers</h1>
+                    <label>Voucher Code</label>
+                    <input type="text" name="voucher-code" id="voucher-code" required>
+
+                    <label>Voucher Name</label>
+                    <input type="text" name="voucher-name" id="voucher-name">
+
+                    <label>Voucher Description</label>
+                    <input type="text" name="voucher-desc" id="voucher-desc">
+
+                    <label>Voucher Validity</label>
+                    <input type="date" name="voucher-valid" id="voucher-valid">
+
+                    <button id="create-voucher">Create</button>
+                </div>
+            </div>
+            <div id="right-side">
+            </div>
+        `;
+
+        const rightSide = document.querySelector('#right-side');
+        const createvoucher = document.querySelector('#create-voucher');
+
+        createvoucher.addEventListener('click', async function(){
+            window.alert('HTI')
+            const code = document.querySelector('#voucher-code').value;
+            const name = document.querySelector('#voucher-name').value;
+            const desc = document.querySelector('#voucher-desc').value;
+            const valid = document.querySelector('#voucher-valid').value;
+
+
+            const response = await fetch('/minicell/index.php/createvoucher',{
+                method: 'POST',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    code: code,
+                    name: name,
+                    desc, desc,
+                    valid: valid
+                })
+            })
+
+            const responseData = await response.json();
+            console.log(responseData);
+        })
+
+        const vouchers = await fetchVoucher();
+        let voucherHTML = '';
+        for (const voucher of vouchers){
+            console.log(voucher)
+            voucherHTML += `
+                <div class="voucher" id="${voucher.id}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M18 18.5a1.5 1.5 0 0 1-1.5-1.5a1.5 1.5 0 0 1 1.5-1.5a1.5 1.5 0 0 1 1.5 1.5a1.5 1.5 0 0 1-1.5 1.5m1.5-9l1.96 2.5H17V9.5m-11 9A1.5 1.5 0 0 1 4.5 17A1.5 1.5 0 0 1 6 15.5A1.5 1.5 0 0 1 7.5 17A1.5 1.5 0 0 1 6 18.5M20 8h-3V4H3c-1.11 0-2 .89-2 2v11h2a3 3 0 0 0 3 3a3 3 0 0 0 3-3h6a3 3 0 0 0 3 3a3 3 0 0 0 3-3h2v-5z"/></svg>
+                    <div class="texts">
+                        <p class="title"># ${voucher.name}</p>
+                        <p>${voucher.description}</p>
+                        <p>Valid until: ${voucher.validity}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        rightSide.innerHTML += voucherHTML;
+
+        async function fetchVoucher(){
+            const response = await fetch('/minicell/index.php/fetchvoucher');
+
+            const resData = await response.json();
+
+            return resData;
         }
     })
 

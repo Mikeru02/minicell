@@ -2,6 +2,7 @@
 require_once 'src/controllers/productController.php';
 require_once 'src/controllers/userController.php';
 require_once 'src/controllers/ordersController.php';
+require_once 'src/controllers/voucherController.php';
 require_once 'src/models/user.php';
 require_once 'src/models/product.php';
 
@@ -242,6 +243,39 @@ class HomePageController{
         $data = json_decode(file_get_contents('php://input'), true);
         $result = $controller->postReview($_SESSION['user']['id'], $data['rating'], $data['orderId'], $data['content']);
         echo json_encode(['data' => json_encode($data)]);
+    }
+
+    public function createVoucher(){
+        $controller = new VoucherController();
+        $data = json_decode(file_get_contents('php://input'), true);
+        echo json_encode($data);
+        $result = $controller->create($data['code'], $data['name'], $data['desc'], $data['valid']);
+    }
+
+    public function fetchVoucher(){
+        $controller = new VoucherController();
+        $result = $controller->fetchVoucher();
+        echo json_encode($result);
+    }
+
+    public function addAddress(){
+        $controller = new UserController();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $result = $controller->addAddress($_SESSION['user']['id'], $data['fullname'], $data['phonenum'], $data['housenum'], $data['street'], $data['brgy'], $data['city'], $data['prov'], $data['zip']);
+        echo json_encode($result);
+    }
+
+    public function getAddress(){
+        $controller = new UserController();
+        $result = $controller->getAddress($_SESSION['user']['id']);
+        echo json_encode($result);
+    }
+
+    public function removeAddress(){
+        $controller = new UserController();
+        $data = json_decode(file_get_contents('php://input'), true);
+        $result = $controller->removeAddress($data['id']);
+        echo json_encode($result);
     }
 }
 

@@ -10,6 +10,7 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="../src/views/accountpage/styles/style.css"/>
+        <link rel="stylesheet" href="../src/views/accountpage/styles/address.css"/>
 
         <!-- Fonts -->
         <link href="https://fonts.cdnfonts.com/css/dela-gothic-one" rel="stylesheet">
@@ -41,6 +42,37 @@
                 <input type="text" id="user-review" placeholder="Describe your thoughts">
                 <button id="reviewbtn">Post Review</button>
             </div>
+            <div id="addressPanel">
+                <h1>New Address</h1>
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" placeholder="Full Name">
+
+                <label for="phonenum">Phone Number</label>
+                <input type="text" id="phonenum" placeholder="Phone Number">
+
+                <label for="housenum">House Number</label>
+                <input type="text" id="housenum" placeholder="House Number">
+
+                <label for="street">Street Name</label>
+                <input type="text" id="street" placeholder="Street Name">
+
+                <label for="brgy">Barangay</label>
+                <input type="text" id="brgy" placeholder="Barangay">
+
+                <label for="city">City / Municipality</label>
+                <input type="text" id="city" placeholder="City / Municipality" value="Pandi">
+
+                <label for="prov">Province</label>
+                <input type="text" id="prov" placeholder="Province" value="Bulacan">
+
+                <label for="zip">Zip Code</label>
+                <input type="text" id="zip" placeholder="Zip Code" value="3014">
+
+                <div>
+                    <button id="cancel-address">Cancel</button>
+                    <button id="save-address">Save Changes</button>
+                </div>
+            </div>
             <dv class="content">
                 <header>
                     <a href="/minicell/index.php/homepage">
@@ -67,7 +99,7 @@
                             <i class="fa-solid fa-money-bill"></i>
                             <p>My Purchases</p>
                         </div>
-                        <div>
+                        <div id="vouchers">
                             <i class="fa-solid fa-ticket"></i>
                             <p>Vouchers</p>
                         </div>
@@ -123,7 +155,45 @@
         const postReviewBTN = document.querySelector('#reviewbtn')
         const span = document.querySelector('.star-rating');
         const ratingRadios = span.querySelectorAll('input[name="rating"]');
+        const vouchers = document.querySelector('#vouchers');
+        const address =document.querySelector('#address');
 
+        //Address related
+        const addressPanel = document.querySelector('#addressPanel')
+        
+        const cancelAdd = document.querySelector('#cancel-address');
+        const saveAdd = document.querySelector('#save-address');
+
+        saveAdd.addEventListener('click', async function(){
+            const fullname = document.querySelector('#fullname').value;
+            const phonenum = document.querySelector('#phonenum').value;
+            const housenum = document.querySelector('#housenum').value;
+            const street = document.querySelector('#street').value;
+            const brgy = document.querySelector('#brgy').value;
+            const city = document.querySelector('#city').value;
+            const prov = document.querySelector('#prov').value;
+            const zip = document.querySelector('#zip').value;
+
+            const addAddress = await fetch('/minicell/index.php/addaddress',{
+                method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fullname: fullname,
+                        phonenum: phonenum,
+                        housenum: housenum,
+                        street: street,
+                        brgy: brgy,
+                        city: city,
+                        prov: prov,
+                        zip: zip
+                    })
+            });
+            addressPanel.style.display = 'none';
+
+
+        })
         function getSelectedRating() {
             let selectedRating = null;
             ratingRadios.forEach(function (radio) {
@@ -294,6 +364,83 @@
 
 
         });
+
+        vouchers.addEventListener('click', async function(){
+            header.innerHTML = '';
+            header.innerHTML = '# Vouchers';
+            editArea.innerHTML = ''; 
+        })
+
+        address.addEventListener('click', async function(){
+            header.innerHTML = '';
+            header.innerHTML = '# Address Information';
+            editArea.innerHTML = `
+                <div id="address-header">
+                    <div>
+                        <p>My Addresses</p>
+                        <p>Manage your Addresses</p>
+                    </div>
+                    <button id="newaddress">Add New Address</button>
+                </div>
+                <div id="address-area"></div>
+            `;
+
+            document.querySelector('#newaddress').addEventListener('click', function(){
+                addressPanel.style.display = "flex"
+            })
+
+            const addresses = await fetch('/minicell/index.php/getaddress');
+            const addressArea = document.querySelector('#address-area');
+            let addHTML = '';
+
+            const addressData = await addresses.json();
+            for (const addData of addressData){
+                console.log(addData)
+                addHTML += `
+                    <div class="address">
+                        <div class="actionbtns">
+                            <p id="edit" class="${addData.id}">Edit</p>
+                            <p id="delete" class="${addData.id}">Delete</p>
+                        </div>
+                        <p>${addData.fullname}</p>
+                        <p>${addData.phone_number}</p>
+                        <p>${addData.house_number}, ${addData.street_name}<p>
+                        <p>${addData.barangay}, ${addData.municipality}, ${addData.province}, ${addData.zip_code}</p>
+                    </div>
+                `;
+                
+            }
+            addressArea.innerHTML += addHTML;
+            
+            const deletebtns = document.querySelectorAll('#delete');
+            const delfunc = deletefunc(deletebtns);
+        })
+
+        async function edit(btns){
+
+        }
+
+        async function deletefunc(btns){
+            btns.forEach(deleteBTN => {
+                deleteBTN.addEventListener('click', async function(){
+                    const res = await fetch('/minicell/index.php/removeaddress',{
+                        method: 'POST',
+                        headers:{
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id: deleteBTN.className
+                        })
+                    });
+                    const data = await res.json()
+
+                    window.alert('Deleted the address');
+                    window.location.href = '/minicell/index.php/account';
+                })
+            })
+        }
+
+
 
     </script>
 </html>

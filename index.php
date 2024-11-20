@@ -172,6 +172,36 @@ else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/review'){
     $controller->postReview();
 }
 
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/createvoucher'){
+    $controller = new HomePageController();
+    $controller->createVoucher();
+}
+
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/fetchvoucher'){
+    $controller = new HomePageController();
+    $controller->fetchVoucher();
+    
+}
+
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/addaddress'){
+    $controller = new HomePageController();
+    $controller->addAddress();
+}
+
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/getaddress'){
+    $controller = new HomePageController();
+    $controller->getAddress();
+}
+
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/removeaddress'){
+    $controller = new HomePageController();
+    $controller->removeAddress();
+}
+
+else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/updateaddress'){
+    
+}
+
 //TEs routes
 else if ($_SERVER['REQUEST_URI'] == '/minicell/index.php/test'){
         $controller = new Test();

@@ -50,5 +50,24 @@ class UserController{
         $result = $this->user->postReview($userId, $rating, $orderId, $content);
         return $result;
     }
+
+    public function addAddress($userId, $fullname, $phonenum, $houseNum,  $streetName, $brgy, $city, $prov, $zip){
+        $result = $this->user->addAddress($userId, $fullname, $phonenum, $houseNum, $streetName, $brgy, $city, $prov, $zip);
+        return $result;
+    }
+
+    public function getAddress($userId){
+        $result = $this->user->getAddress($userId);
+        return $result;
+    }
+
+    public function removeAddress($id){
+        $result = $this->user->removeAddress($id);
+        return $result;
+    }
+
+    public function updateAddress($userId){
+
+    }
 }
 ?>
