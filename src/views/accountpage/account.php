@@ -240,6 +240,10 @@
                                 <p>Birthdate</p>
                                 <input type="date" name="birthdate" placeholder="" value="<?php echo $_SESSION['user']['birthdate'];?>" required>
                             </div>
+                            <div>
+                                <p>Password</p>
+                                <input type="text" name="password" placeholder="Password">
+                            </div>
                             <a href="/minicell/index.php/logout" class="action-btn">
                                 Logout
                             </a>
